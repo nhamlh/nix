@@ -80,6 +80,11 @@
      tmux
      python3
      dex
+
+     gnumake
+     gcc
+     libtool
+     libvterm
   ];
 
   fonts.fonts = with pkgs; [
@@ -95,8 +100,8 @@
   #   enableSSHSupport = true;
   # };
 
-  # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
