@@ -50,6 +50,10 @@
         disableWhileTyping = true;
       };
     };
+
+  displayManager.sessionCommands = ''
+    dex -a
+  '';
   };
 
   services.xserver.windowManager.i3.enable = true;
