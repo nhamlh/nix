@@ -93,10 +93,10 @@
      dex
   ];
 
-  fonts.fonts = with pkgs; [
-    fira-code
-    fira-code-symbols
-  ];
+  #fonts.fonts = with pkgs; [
+  #  fira-code
+  #  fira-code-symbols
+  #];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
