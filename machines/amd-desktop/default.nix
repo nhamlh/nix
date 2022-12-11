@@ -33,26 +33,30 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
-  services.xserver.autorun = true;
+  services.xserver = {
+    enable = true;
+    autorun = true;
+    videoDrivers = ["amdgpu"];
+    dpi = 144;
+    xkbOptions = "ctrl:swapcaps";
+    autoRepeatDelay = 250;
+    autoRepeatInterval = 50;
+
+    libinput = {
+      enable = true;
+
+      touchpad = {
+        naturalScrolling = true;
+        disableWhileTyping = true;
+      };
+    };
+  };
+
   services.xserver.windowManager.i3.enable = true;
   services.xserver.windowManager.i3.package = pkgs.i3-gaps;
   services.xserver.windowManager.i3.extraPackages = with pkgs; [i3status-rust i3lock rofi];
 
-  services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.xorg.xset}/bin/xset r rate 150 100
-    dex -a
-  '';
-
   xdg.autostart.enable = true;
-
-  # Configure keymap in X11
-  # services.xserver.layout = "us";
-  services.xserver.xkbOptions = "ctrl:swapcaps"; # map caps to ctrl.
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
 
   # Enable sound.
   sound.enable = true;
