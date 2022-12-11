@@ -92,7 +92,7 @@
      gnumake
      gcc
      libtool
-     libvterm
+     libvterm-neovim
   ];
 
   fonts.fonts = with pkgs; [
