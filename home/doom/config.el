@@ -4,7 +4,7 @@
       user-mail-address "lehoainham@gmail.com")
 
 ;; UI
-(setq doom-font (font-spec :family "Fira Code" :size 15))
+(setq doom-font (font-spec :family "Fira Code" :size 17))
 ; (setq doom-theme 'doom-one-light)
 (setq doom-theme 'doom-solarized-light)
 (setq display-line-numbers-type 'relative)
