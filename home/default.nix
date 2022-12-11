@@ -45,7 +45,10 @@
     tdesktop
   ];
 
-  programs.emacs.enable = true;
+  programs.emacs = {
+    enable = true;
+    extraPackages = epkgs: [ epkgs.vterm ];
+  };
 
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
