@@ -51,7 +51,7 @@
       };
     };
 
-  xserver.displayManager.sessionCommands = ''
+  displayManager.sessionCommands = ''
     dex -a
   '';
   };
