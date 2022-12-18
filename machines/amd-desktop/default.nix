@@ -65,6 +65,8 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
+  virtualization.docker.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -73,7 +75,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nhamlh = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -93,7 +95,6 @@
   ];
 
   services.openssh.enable = true;
-
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
