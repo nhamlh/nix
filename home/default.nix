@@ -38,6 +38,7 @@
     scrot
     unzip
     xclip
+    mpv
   ] ++ [ # GUI tools
     alacritty
     firefox
