@@ -186,13 +186,13 @@ setopt interactivecomments
 
 #TODO: per-platform config
 # use gnu bins installed by homebrew instead of OSX defaults
-PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+#PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 
 # Need to run $(brew --prefix)/opt/fzf/install first
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+#eval "$(/opt/homebrew/bin/brew shellenv)"
+#. /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 # Import my own custom zsh customizations
 for src (~/.zsh.d/*.zsh) source $src
