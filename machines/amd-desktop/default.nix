@@ -78,6 +78,15 @@
     extraGroups = [ "wheel" "docker" ];
   };
 
+
+  # thunar extensions
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-archive-plugin
+    thunar-volman
+  ];
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
    environment.systemPackages = with pkgs; [
@@ -92,6 +101,8 @@
      tmux
      python3
      dex
+
+     xfce.thunar
   ];
 
   services.openssh.enable = true;
