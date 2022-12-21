@@ -103,6 +103,7 @@
      dex
 
      xfce.thunar
+     unzip
   ];
 
   services.openssh.enable = true;
