@@ -34,8 +34,8 @@
     videoDrivers = ["amdgpu"];
     dpi = 144;
     xkbOptions = "ctrl:swapcaps";
-    autoRepeatDelay = 200;
-    autoRepeatInterval = 50;
+    #autoRepeatDelay = 200;
+    #autoRepeatInterval = 50;
 
     libinput = {
       enable = true;
