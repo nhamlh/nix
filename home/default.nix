@@ -33,6 +33,7 @@
     bat
     zenith
     nvtop
+    usbutils
   ] ++ [ # more cli tools
     feh
     scrot
@@ -82,6 +83,7 @@
   xdg.configFile."doom".source = ./doom;
   xdg.configFile."i3".source = ./i3;
   xdg.configFile."rofi".source = ./rofi;
+  home.file.".Xresources".source = ./Xresources;
   home.file.".zshrc".source = ./zshrc;
   home.file.".zsh.d".source = ./zsh.d;
 }
