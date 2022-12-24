@@ -47,6 +47,7 @@
     };
 
   displayManager.sessionCommands = ''
+    xbindkeys
     dex -a
   '';
   };
@@ -102,6 +103,7 @@
      python3
      dex
 
+     xbindkeys
      xfce.thunar
      unzip
   ];

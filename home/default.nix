@@ -83,6 +83,7 @@
   xdg.configFile."doom".source = ./doom;
   xdg.configFile."i3".source = ./i3;
   xdg.configFile."rofi".source = ./rofi;
+  home.file.".xbindkeysrc".source = ./xbindkeysrc;
   home.file.".Xresources".source = ./Xresources;
   home.file.".zshrc".source = ./zshrc;
   home.file.".zsh.d".source = ./zsh.d;
