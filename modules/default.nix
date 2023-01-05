@@ -1,11 +1,5 @@
 { ... }:
 
-let
-  mapModules = {}: {
-  };
-in
 {
-  imports = [
-    ./agenix.nix
-  ];
+  imports = [ ./hardware ./base ./virt ./graphical ];
 }
