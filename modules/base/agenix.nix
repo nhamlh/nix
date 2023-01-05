@@ -4,7 +4,9 @@ with lib;
 let cfg = config.my.modules.base.agenix;
 in {
 
-  options.my.modules.base.agenix = { enable = mkBoolOpt true; };
+  options.my.modules.base.agenix = {
+    enable = mkEnableOption "Age files encrypting";
+  };
 
   config = mkIf cfg.enable {
     #FIXME: Append agenix to pkgs, otherwise this will fail
@@ -13,7 +15,7 @@ in {
 
     age = {
       identityPaths = [ "${config.users.users.nhamlh.home}/.ssh/id_ed25519" ];
-      secrets.tskey.file = ./secrets/tskey.age;
+      secrets.tskey.file = ../../secrets/tskey.age;
     };
   };
 }

@@ -4,7 +4,9 @@
 with lib;
 let cfg = config.my.modules.graphical.programs.thunar;
 in {
-  options.my.modules.graphical.programs.thunar = { enable = mkBoolOpt false; };
+  options.my.modules.graphical.programs.thunar = {
+    enable = mkEnableOption "Thunar file manager";
+  };
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ xfce.thunar ];
 

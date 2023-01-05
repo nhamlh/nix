@@ -3,10 +3,10 @@
 with lib;
 let
   cfg = config.my.modules.hardware.bluetooth;
-  declareFor = name:{};
+  declareFor = name: { };
 in {
   options.my.modules.hardware.bluetooth = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Bluetooth setting";
   };
 
   config = mkIf cfg.enable {

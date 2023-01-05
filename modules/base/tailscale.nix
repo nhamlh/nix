@@ -5,11 +5,10 @@ let
   cfg = config.my.modules.base.tailscale;
   tsInterface = "tailscale0";
   tskey = config.age.secrets.tskey.path;
-in
 
-{
+in {
   options.my.modules.base.tailscale = {
-    enable = mkBoolOpt true;
+    enable = mkEnableOption "Tailscale network";
   };
 
   config = mkIf cfg.enable {

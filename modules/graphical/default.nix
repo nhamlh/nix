@@ -6,7 +6,7 @@ in {
   imports = [ ./programs ];
 
   options.my.modules.graphical = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Graphical module";
     # TODO Implement i3 submodule
     wm = lib.mkOption {
       description = "Window manager to be used";

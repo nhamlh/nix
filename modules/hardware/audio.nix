@@ -1,11 +1,10 @@
 { options, config, lib, pkgs, ... }:
 
 with lib;
-let
-  cfg = config.my.modules.hardware.audio;
+let cfg = config.my.modules.hardware.audio;
 in {
   options.my.modules.hardware.audio = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Audio setting";
   };
 
   config = mkIf cfg.enable {

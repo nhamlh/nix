@@ -3,7 +3,9 @@
 with lib;
 let cfg = config.my.modules.base.packages;
 in {
-  options.my.modules.base.packages = { enable = mkBoolOpt false; };
+  options.my.modules.base.packages = {
+    enable = mkEnableOption "Install base packages";
+  };
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
