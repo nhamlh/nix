@@ -1,6 +1,16 @@
-with import <nixpkgs> {};
-stdenv.mkDerivation {
-  name = "emacsenv";
-  nativeBuildInputs = [ cmake ];
-  buildInputs = [ libvterm-neovim ];
+{ pkgs ? import <nixpkgs> {} }:
+
+with pkgs;
+let nixBin =
+      writeShellScriptBin "nix" ''
+        ${nixFlakes}/bin/nix --option experimental-features "nix-command flakes" "$@"
+      '';
+in mkShell {
+  buildInputs = [
+    nixfmt
+  ];
+  shellHook = ''
+    export FLAKE="$(pwd)"
+    export PATH="$FLAKE/bin:${nixBin}/bin:$PATH"
+  '';
 }
