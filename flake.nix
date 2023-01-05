@@ -14,23 +14,26 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, home-manager, nixpkgs, agenix, ... }: {
-    nixpkgs.pkgs.agenix = agenix;
-
-    nixosConfigurations.amd-desktop = nixpkgs.lib.nixosSystem {
+  outputs = inputs@{ self, home-manager, nixpkgs, agenix, ... }:
+    let
       system = "x86_64-linux";
-      specialArgs = inputs;
-      modules = [
-        ./modules
-        ./machines/amd-desktop
-        agenix.nixosModule
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.nhamlh = import ./home;
-        }
-      ];
+      pkgs = import nixpkgs { config = { allowUnfree = true; }; };
+    in {
+      nixosConfigurations.amd-desktop = nixpkgs.lib.nixosSystem {
+        inherit system;
+
+        specialArgs = inputs;
+        modules = [
+          ./modules
+          ./hosts/amd-desktop
+          agenix.nixosModule
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.nhamlh = import ./home;
+          }
+        ];
+      };
     };
-  };
 }

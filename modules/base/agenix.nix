@@ -1,4 +1,4 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, agenix, ... }:
 
 with lib;
 let cfg = config.my.modules.base.agenix;
@@ -9,7 +9,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    #FIXME: Append agenix to pkgs, otherwise this will fail
     environment.systemPackages = with pkgs;
       [ agenix.defaultPackage.x86_64-linux ];
 
