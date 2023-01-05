@@ -15,6 +15,8 @@
   };
 
   outputs = inputs@{ self, home-manager, nixpkgs, agenix, ... }: {
+    nixpkgs.pkgs.agenix = agenix;
+
     nixosConfigurations.amd-desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = inputs;
