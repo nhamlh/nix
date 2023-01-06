@@ -7,5 +7,8 @@ in {
     enable = mkEnableOption "Enable base services";
   };
 
-  config = { services.openssh.enable = true; };
+  config = {
+    services.openssh.enable = true;
+    programs.ssh.startAgent = true;
+  };
 }
