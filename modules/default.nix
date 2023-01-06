@@ -1,5 +1,5 @@
 { ... }:
 
 {
-  imports = [ ./hardware ./base ./virt ./graphical ];
+  imports = [ ./hardware ./base ./virt ./services ./graphical ];
 }

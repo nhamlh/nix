@@ -26,6 +26,8 @@
 
     containers.enable = true;
 
+    services = { grafana-agent.enable = true; };
+
     graphical = {
       enable = true;
       programs = { thunar.enable = true; };
