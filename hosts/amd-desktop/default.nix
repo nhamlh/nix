@@ -32,6 +32,8 @@
       enable = true;
       programs = { thunar.enable = true; };
     };
+
+    gaming = { steam.enable = true; };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
