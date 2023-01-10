@@ -1,16 +1,7 @@
 { config, pkgs, home-manager, ... }:
 
 {
-  imports = [
-    ./hardware.nix
-
-    home-manager.nixosModules.home-manager
-    {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.nhamlh = import ../../home;
-    }
-  ];
+  imports = [ ./hardware.nix ];
 
   networking.hostName = "amd-desktop";
   networking.networkmanager.enable = true;
@@ -30,7 +21,8 @@
 
     graphical = {
       enable = true;
-      programs = { thunar.enable = true; };
+      #programs = { thunar.enable = true; };
+      programs = { test.enable = true; };
     };
 
     gaming = { steam.enable = true; };
@@ -40,6 +32,7 @@
   users.users.nhamlh = {
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" ];
+    home = "/home/nhamlh";
   };
 
   # This value determines the NixOS release from which the default

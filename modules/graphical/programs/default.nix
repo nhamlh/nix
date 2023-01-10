@@ -1,1 +1,1 @@
-{ ... }: { imports = [ ./thunar.nix ]; }
+{ ... }: { imports = [ ./test.nix ]; }
