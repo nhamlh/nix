@@ -1,30 +1,27 @@
-WORK IN PROGRESS
-
 # Installation
 
-1. Boot into the installer
-
-2. Switch to root user
-
-3. Partition the disk and mount root to /mnt
-
-4. Clone this repo
+1. Boot into the installer and switch to root user
+2. Partition the disk and mount root to /mnt
+3. Clone this repo
 ``` sh
+nix-shell -p git nixFlakes
+
 NIX_REPO_PATH=/tmp/nix
-git clone git@github.com:nhamlh/nix $NIX_REPO_PATH
-cd $NIX_REPO_PATH
+git clone https://github.com/nhamlh/nix $NIX_REPO_PATH && cd $NIX_REPO_PATH
+
 ```
 
-5. Append this host (if new) to this repo
+4. Generate config for this host and append to this repo
 
 ``` sh
 HOST=<my new machine>
 
-mkdir machines/$HOST
-nixos-generate-config --root /mnt --dir ${NIX_REPO_PATH}/machines/$HOST
-mv machines/$HOST/hardware-configurationn.nix machines/$HOST/hardware.nix
-rm -f machines/$HOST/configuration.nix
+mkdir hosts/$HOST
+nixos-generate-config --root /mnt --dir ${NIX_REPO_PATH}/hosts/$HOST
+mv hosts/$HOST/configuration.nix hosts/$HOST/default.nix
 ```
 
-6. Install nixos
-nixos-install --root /mnt --impure --flake .#$HOST
+5. Install nixos
+``` sh
+NIXPKGS_ALLOW_UNFREE=1 nixos-install --root /mnt --impure --flake ${NIX_REPO_PATH}#$HOST
+```
