@@ -1,5 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = { xdg.configFile."tmux/tmux.conf".source = ./tmux.conf; };
+  config = {
+    home-manager.users.nhamlh = {
+      xdg.configFile."tmux/tmux.conf".source = ./tmux.conf; 
+    };
+  };
 }

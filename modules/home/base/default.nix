@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./git.nix ./zsh.nix ./direnv.nix ./emacs.nix ];
+  imports = [ ./git.nix ./zsh.nix ./tmux.nix ./direnv.nix ./emacs.nix ];
 
   config = {
     home-manager.users.nhamlh = {
