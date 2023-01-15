@@ -3,7 +3,7 @@
 with lib;
 let cfg = config.my.modules.graphical;
 in {
-  imports = [ ./programs ];
+  imports = [ ];
 
   options.my.modules.graphical = {
     enable = mkEnableOption "Graphical module";
