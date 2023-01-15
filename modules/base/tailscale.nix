@@ -54,7 +54,7 @@ in {
         fi
 
         # otherwise authenticate with tailscale
-        ${tailscale}/bin/tailscale up -authkey ${tskey}
+        ${tailscale}/bin/tailscale up -authkey ${builtins.readFile tskey}
       '';
     };
   };
