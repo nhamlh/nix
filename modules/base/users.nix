@@ -8,7 +8,7 @@ with lib; {
       # password in git (encrypted using agenix) and password rotating. Seprate
       # these sensitive things (password, API keys, etc) into private git repo
       # as a flake can be considered secure enough
-      mutableUsers = true;
+      mutableUsers = false;
       defaultUserShell = pkgs.zsh;
     };
   };
