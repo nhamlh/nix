@@ -3,12 +3,14 @@
 {
   config = {
     home-manager.users.nhamlh = {
+    #TODO: setup doomemacs properly according to https://github.com/doomemacs/doomemacs/blob/master/docs/getting_started.org#doom-emacs
       programs.emacs = {
         enable = true;
         extraPackages = epkgs: [ epkgs.vterm ];
       };
 
-      xdg.configFile."doom".source = ./doom;
+      #TODO: Set DOOMDIR to "xdg.configFile.doom"
+      home.file.".doom.d".source = ./doom;
     };
   };
 }
