@@ -19,11 +19,20 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs { config = { allowUnfree = true; }; };
     in {
-      nixosConfigurations.amd-desktop = nixpkgs.lib.nixosSystem {
-        inherit system;
+      nixosConfigurations = {
+        amd-desktop = nixpkgs.lib.nixosSystem {
+          inherit system;
 
-        specialArgs = inputs;
-        modules = [ ./modules ./hosts/amd-desktop ];
+          specialArgs = inputs;
+          modules = [ ./modules ./hosts/amd-desktop ];
+        };
+
+        dell-mini = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          specialArgs = inputs;
+          modules = [ ./modules ./hosts/dell-mini ];
+        };
       };
     };
 }
