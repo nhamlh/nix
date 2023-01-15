@@ -19,7 +19,6 @@
         diff-so-fancy
         bat
         zenith
-        nvtop
         usbutils
         unzip
         xclip
