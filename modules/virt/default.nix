@@ -7,5 +7,10 @@ in {
     enable = mkEnableOption "Containerization";
   };
 
-  config = mkIf cfg.enable { virtualisation.docker.enable = true; };
+  config = mkIf cfg.enable {
+
+    environment.systemPackages = with pkgs; [ docker-compose ];
+
+    virtualisation.docker.enable = true;
+  };
 }
