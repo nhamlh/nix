@@ -5,6 +5,7 @@ with lib; {
     environment.systemPackages = with pkgs; [
       gnumake
       gcc
+      openssl
       zsh
       git
       curl
