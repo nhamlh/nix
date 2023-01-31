@@ -7,8 +7,17 @@ in {
     enable = mkEnableOption "Audio setting";
   };
 
+  # https://nixos.wiki/wiki/PipeWire
   config = mkIf cfg.enable {
-    sound.enable = true;
-    hardware.pulseaudio.enable = true;
+    sound.enable = false;
+    security.rtkit.enable = true;
+    services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+
+    environment.systemPackages = with pkgs; [ pavucontrol ];
   };
 }
