@@ -11,7 +11,10 @@
 
     # Secrets manager
     agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    secrets = {
+      url = "git+ssh://git@github.com/nhamlh/nix-secrets.git";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, ... }:
