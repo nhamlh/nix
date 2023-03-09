@@ -4,6 +4,9 @@ with lib;
 let cfg = config.my.modules.graphical;
 in {
   config = mkIf cfg.enable {
-    home-manager.users.nhamlh = { xdg.configFile."rofi".source = ./rofi; };
+    home-manager.users.nhamlh = {
+      home.packages = with pkgs; [ rofi ];
+      xdg.configFile."rofi".source = ./rofi;
+    };
   };
 }

@@ -18,7 +18,10 @@
     containers.enable = true;
 
     services = { grafana-agent.enable = true; };
-    graphical = { enable = true; };
+    graphical = {
+      enable = true;
+      wm = "sway";
+    };
     gaming = { steam.enable = true; };
   };
 

@@ -7,6 +7,7 @@ in {
   imports = [
     ./packages.nix
     ./i3.nix
+    ./sway.nix
     ./thunar.nix
     ./rofi.nix
     ./alacritty.nix
