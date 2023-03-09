@@ -4,7 +4,7 @@ with lib;
 let
   cfg = config.my.modules.base.tailscale;
   tsInterface = "tailscale0";
-  tskey = config.age.secrets.tskey.path;
+  #tskey = config.age.secrets.tskey.path;
 
 in {
   options.my.modules.base.tailscale = {
@@ -54,7 +54,7 @@ in {
         fi
 
         # otherwise authenticate with tailscale
-        ${tailscale}/bin/tailscale up -authkey ${builtins.readFile tskey}
+        ${tailscale}/bin/tailscale up -authkey "foobar"
       '';
     };
   };

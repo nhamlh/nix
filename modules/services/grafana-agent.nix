@@ -64,10 +64,10 @@ in {
         restartIfChanged = true;
 
         environment = {
-          PROM_KEY =
-            removeSuffix "\n" (readFile config.age.secrets.ga-prom-key.path);
-          LOKI_KEY =
-            removeSuffix "\n" (readFile config.age.secrets.ga-loki-key.path);
+          #PROM_KEY = removeSuffix "\n" (readFile config.age.secrets.ga-prom-key.path);
+          #LOKI_KEY = removeSuffix "\n" (readFile config.age.secrets.ga-loki-key.path);
+	  PROM_KEY = "foobar";
+	  LOKI_KEY = "foobar";
         };
 
         serviceConfig = {
