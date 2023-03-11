@@ -1,5 +1,6 @@
 set $mod Mod4
 
+
 ################################################
 # Windows
 ################################################
@@ -21,7 +22,8 @@ input "type:keyboard" {
     xkb_options ctrl:nocaps
 }
 
-output DP-3 scale 1
+output "*" scale 1
+output "*" background $HOME/.config/wallpapers/stay_focused.jpg fill
 
 # Solarized dark colors
 #client.focused #6c71c4 #6c71c4 #fdf6e3 #6c71c4
@@ -29,8 +31,14 @@ output DP-3 scale 1
 #client.unfocused #073642 #073642 #93a1a1 #586e75
 #client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 
+# Decorate windows border with solarized dark theme
+client.focused          #002b36 #586e75 #fdf6e3 #268bd2
+client.focused_inactive #002b36 #073642 #839496 #073642
+client.unfocused        #002b36 #073642 #839496 #073642
+client.urgent           #002b36 #dc322f #fdf6e3 #002b36
+
 # Nature theme color
-client.background	$background
+client.background $background
 
 ################################################
 # Windows manipulating
@@ -122,12 +130,12 @@ mode "resize" {
 # Press a shortcut to jump to a workspace, then press the same shortcut to jump back
 #workspace_auto_back_and_forth yes
 
-workspace 1 output HDMI1
-workspace 2 output HDMI1
-workspace 3 output HDMI1
-workspace "4 " output eDP1
-workspace 5 output eDP1
-workspace 6 output eDP1
+# workspace 1 output HDMI1
+# workspace 2 output HDMI1
+# workspace 3 output HDMI1
+# workspace "4 " output eDP1
+# workspace 5 output eDP1
+# workspace 6 output eDP1
 
 # switch to workspace
 bindsym $mod+1 workspace number 1 
@@ -165,7 +173,8 @@ bar {
         font pango:FiraCode Nerd Font 15
         height 36
         position top
-        status_command i3status-rs ~/.config/i3/i3status-rs.toml
+        # FIXME: do not depends on i3status-rs
+        status_command i3status-rs ~/.config/sway/i3status-rs.toml
 
         colors {
         separator #666666
@@ -179,25 +188,33 @@ bar {
 }
 
 ################################################
+# Custom keybindings
+################################################
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86Search exec $menu
+bindsym F3 "scrot -s -f -e 'xclip -i $f -selection clipboard -t image/png' ~/Screenshots/screenshot-%Y-%m-%d_$wx$h.png"
+
+################################################
 # Misc
 ################################################
 
 # startup applications
-#exec        --no-startup-id lxpolkit # provided by lxsession
-#exec        --no-startup-id redshift
-exec        --no-startup-id 'xss-lock "swaylock -c 111111 -e"'
-exec_always --no-startup-id feh --bg-fill $HOME/.config/i3/wallpapers/stay_focused.jpg
+exec        --no-startup-id 'swayidle -w timeout 300 "swaylock -f -c 111111 -e"'
 exec_always --no-startup-id eval $(ssh-agent -s)
-exec_always --no-startup-id compton -b --config ~/.config/compton.conf
-exec_always --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
-
-# disable touchpad
-#exec --no-startup-id $HOME/.config/i3/disable-touchpad.sh
+exec_always --no-startup-id 'dex -a'
+exec_always --no-startup-id dunst
 
 # quickly start a application
 bindsym $mod+space exec "rofi -i -combi-modi window,drun -show combi -modi combi"
 #bindsym $mod+t exec emacsclient --eval "(emacs-everywhere)"
-bindsym $mod+t exec "alacritty"
 
 # lock screen
 bindsym $mod+n exec --no-startup-id "swaylock -c 000000 -e"
@@ -205,15 +222,9 @@ bindsym $mod+n exec --no-startup-id "swaylock -c 000000 -e"
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+# exit sway (logs you out of your X session)
+bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your session.' -b 'Yes, exit sway' 'swaymsg exit'"
 
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-# Decorate windows border with solarized dark theme
-client.focused          #002b36 #586e75 #fdf6e3 #268bd2
-client.focused_inactive #002b36 #073642 #839496 #073642
-client.unfocused        #002b36 #073642 #839496 #073642
-client.urgent           #002b36 #dc322f #fdf6e3 #002b36
-
+# read sway.nix for more info
+exec        --no-startup-id 'dbus-sway-environment'
+exec        --no-startup-id 'configure-gtk'

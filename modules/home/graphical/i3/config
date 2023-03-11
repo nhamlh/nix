@@ -42,6 +42,12 @@ set_from_resource	$color15	color15
 #client.unfocused #073642 #073642 #93a1a1 #586e75
 #client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 
+# Decorate windows border with solarized dark theme
+client.focused          #002b36 #586e75 #fdf6e3 #268bd2
+client.focused_inactive #002b36 #073642 #839496 #073642
+client.unfocused        #002b36 #073642 #839496 #073642
+client.urgent           #002b36 #dc322f #fdf6e3 #002b36
+
 # Nature theme color
 client.background	$background
 
@@ -203,9 +209,10 @@ bar {
 
 # startup applications
 #exec        --no-startup-id lxpolkit # provided by lxsession
-#exec        --no-startup-id redshift
+exec        --no-startup-id 'dex -a'
+exec        --no-startup-id xbindkeys
 exec        --no-startup-id 'xss-lock "i3lock -c 000000 -e"'
-exec_always --no-startup-id feh --bg-fill $HOME/.config/i3/wallpapers/stay_focused.jpg
+exec_always --no-startup-id feh --bg-fill $HOME/.config/wallpapers/stay_focused.jpg
 exec_always --no-startup-id eval $(ssh-agent -s)
 exec_always --no-startup-id compton -b --config ~/.config/compton.conf
 exec_always --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
@@ -229,10 +236,3 @@ bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-# Decorate windows border with solarized dark theme
-client.focused          #002b36 #586e75 #fdf6e3 #268bd2
-client.focused_inactive #002b36 #073642 #839496 #073642
-client.unfocused        #002b36 #073642 #839496 #073642
-client.urgent           #002b36 #dc322f #fdf6e3 #002b36
-

@@ -8,6 +8,7 @@ in {
     ./packages.nix
     ./i3.nix
     ./sway.nix
+    ./dunst.nix
     ./thunar.nix
     ./rofi.nix
     ./alacritty.nix
@@ -16,9 +17,7 @@ in {
 
   config = mkIf cfg.enable {
     home-manager.users.nhamlh = {
-      xdg.configFile."compton.conf".source = ./compton.conf;
-      home.file.".xbindkeysrc".source = ./xbindkeysrc;
-      home.file.".Xresources".source = ./Xresources;
+      xdg.configFile."wallpapers".source = ../../../wallpapers;
     };
   };
 }

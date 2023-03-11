@@ -13,4 +13,26 @@ in {
       default = "i3";
     };
   };
+
+  config = mkIf cfg.enable {
+    services.dbus.enable = true;
+
+    xdg = {
+      autostart.enable = true;
+
+      portal = {
+        enable = true;
+        wlr.enable = true;
+        # gtk portal needed to make gtk apps happy
+        extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      };
+    };
+
+    # Select internationalisation properties.
+    i18n.defaultLocale = "en_US.UTF-8";
+    i18n.inputMethod = {
+      enabled = "ibus";
+      ibus.engines = with pkgs.ibus-engines; [ bamboo ];
+    };
+  };
 }

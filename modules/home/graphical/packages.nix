@@ -5,7 +5,13 @@ let cfg = config.my.modules.graphical;
 in {
   config = mkIf cfg.enable {
     home-manager.users.nhamlh = {
-      home.packages = with pkgs; [ scrot feh firefox chromium tdesktop ];
+      home.packages = with pkgs; [
+        nvtop
+        dex # generate and execute DesktopEntry files of the type Application
+        firefox
+        chromium
+        tdesktop
+      ];
     };
   };
 }
