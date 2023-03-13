@@ -14,8 +14,6 @@
       bluetooth.enable = true;
     };
 
-    containers.enable = true;
-
     services = { grafana-agent.enable = true; };
     graphical = {
       enable = true;

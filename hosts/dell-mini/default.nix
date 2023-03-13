@@ -12,7 +12,10 @@
   time.timeZone = "Asia/Ho_Chi_Minh";
 
   my.modules = {
-    containers.enable = true;
+    containers.k3s = {
+      enable = true;
+      role = "server";
+    };
 
     services = {
       grafana-agent.enable = true;

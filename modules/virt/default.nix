@@ -7,6 +7,8 @@ in {
     enable = mkEnableOption "Containerization";
   };
 
+  imports = [ ./k3s.nix ];
+
   config = mkIf cfg.enable {
 
     environment.systemPackages = with pkgs; [ docker-compose ];
