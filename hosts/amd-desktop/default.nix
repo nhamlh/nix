@@ -14,7 +14,10 @@
       bluetooth.enable = true;
     };
 
-    containers.enable = true;
+    containers.k3s = {
+      enable = false;
+      role = "server";
+    };
 
     services = { grafana-agent.enable = true; };
     graphical = {
