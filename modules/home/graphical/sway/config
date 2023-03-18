@@ -187,6 +187,7 @@ bar {
     }
 }
 
+
 ################################################
 # Custom keybindings
 ################################################
@@ -200,7 +201,8 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Search exec $menu
-bindsym F3 "scrot -s -f -e 'xclip -i $f -selection clipboard -t image/png' ~/Screenshots/screenshot-%Y-%m-%d_$wx$h.png"
+bindsym F3 exec "screenshot"
+bindsym F4 exec "screenshot -g"
 
 ################################################
 # Misc

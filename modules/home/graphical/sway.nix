@@ -44,6 +44,20 @@ let
       gsettings set $gnome_schema gtk-theme 'Dracula'
     '';
   };
+
+  screenshot = pkgs.writeTextFile {
+    name = "screenshot";
+    destination = "/bin/screenshot";
+    executable = true;
+    text = ''
+      FILE=$HOME/Screenshots/$(date "+%Y-%m-%d-%H%M%S").png
+      if [[ $@ == "-g" ]]; then
+         grim -g "$(slurp)" - | tee $FILE | wl-copy
+      else
+         grim  - | tee $FILE | wl-copy
+      fi
+    '';
+  };
 in {
   config = mkIf cfg.enable {
     home-manager.users.nhamlh = {
@@ -62,6 +76,7 @@ in {
         glib # gsettings
         dbus-sway-environment
         configure-gtk
+        screenshot
       ];
 
       xdg.configFile."sway/config".source = ./sway/config;

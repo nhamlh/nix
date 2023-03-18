@@ -8,6 +8,7 @@ in {
       home.packages = with pkgs; [
         nvtop
         dex # generate and execute DesktopEntry files of the type Application
+        feh
         firefox
         chromium
         tdesktop
