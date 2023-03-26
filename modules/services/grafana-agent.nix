@@ -5,6 +5,7 @@ with lib;
 let
   cfg = config.my.modules.services.grafana-agent;
   configFile = "grafana-agent/config.yaml";
+  secrets = import config.age.secrets.secrets.path;
 in {
   options.my.modules.services.grafana-agent = {
     enable = mkEnableOption "Grafana Agent";
@@ -64,10 +65,8 @@ in {
         restartIfChanged = true;
 
         environment = {
-          #PROM_KEY = removeSuffix "\n" (readFile config.age.secrets.ga-prom-key.path);
-          #LOKI_KEY = removeSuffix "\n" (readFile config.age.secrets.ga-loki-key.path);
-	  PROM_KEY = "foobar";
-	  LOKI_KEY = "foobar";
+          PROM_KEY = "${secrets.keys.prometheus}";
+          LOKI_KEY = "${secrets.keys.loki}";
         };
 
         serviceConfig = {

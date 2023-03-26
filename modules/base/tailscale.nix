@@ -4,7 +4,8 @@ with lib;
 let
   cfg = config.my.modules.base.tailscale;
   tsInterface = "tailscale0";
-  #tskey = config.age.secrets.tskey.path;
+  secrets = import config.age.secrets.secrets.path;
+  tskey = secrets.keys.tailscale;
 
 in {
   options.my.modules.base.tailscale = {

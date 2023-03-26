@@ -16,12 +16,8 @@ in {
 
     age = {
       identityPaths = [ "${config.users.users.nhamlh.home}/.ssh/id_ed25519" ];
-
-      #TODO: Map over secrets and populate age files
-      #secrets.nhamlh-passwd.file = "${secrets}/nhamlh-passwd.age";
-      #secrets.tskey.file = "${secrets}/tskey.age";
-      #secrets.ga-prom-key.file = "${secrets}/ga-prom-key.age";
-      #secrets.ga-loki-key.file = "${secrets}/ga-loki-key.age";
+      # This one file is a nix expression to host all secrets
+      secrets.secrets.file = "${secrets}/secrets.age";
     };
   };
 }
