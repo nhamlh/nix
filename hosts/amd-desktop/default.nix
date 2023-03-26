@@ -12,7 +12,6 @@
     hardware = {
       audio.enable = true;
       bluetooth.enable = true;
-      hidpi.enable = true;
     };
 
     containers.enable = true;
