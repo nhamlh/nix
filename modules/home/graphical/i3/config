@@ -213,7 +213,6 @@ exec        --no-startup-id 'dex -a'
 exec        --no-startup-id xbindkeys
 exec        --no-startup-id 'xss-lock "i3lock -c 000000 -e"'
 exec_always --no-startup-id feh --bg-fill $HOME/.config/wallpapers/stay_focused.jpg
-exec_always --no-startup-id eval $(ssh-agent -s)
 exec_always --no-startup-id compton -b --config ~/.config/compton.conf
 exec_always --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
 
