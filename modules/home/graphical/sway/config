@@ -212,11 +212,10 @@ bindsym F4 exec "screenshot -g"
 exec        --no-startup-id 'swayidle -w timeout 300 "swaylock -f -c 111111 -e"'
 exec_always --no-startup-id eval $(ssh-agent -s)
 exec_always --no-startup-id 'dex -a'
-exec_always --no-startup-id dunst
+exec_always --no-startup-id dunst -conf .config/dunstrc
 
 # quickly start a application
 bindsym $mod+space exec "rofi -i -combi-modi window,drun -show combi -modi combi"
-#bindsym $mod+t exec emacsclient --eval "(emacs-everywhere)"
 
 # lock screen
 bindsym $mod+n exec --no-startup-id "swaylock -c 000000 -e"
