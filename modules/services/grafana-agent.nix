@@ -62,6 +62,7 @@ in {
         enable = true;
         description = "Grafana Agent";
         after = [ "network.target" ];
+        wantedBy = [ "default.target" ];
         restartIfChanged = true;
 
         environment = {
