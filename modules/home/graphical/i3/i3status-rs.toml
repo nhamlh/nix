@@ -1,3 +1,7 @@
+[theme]
+theme = "solarized-dark"
+[icons]
+icons = "awesome5"
 
 [[block]]
 block = "disk_space"
@@ -9,24 +13,23 @@ alert = 10.0
 
 [[block]]
 block = "memory"
-#format_swap = "{swap_used_percents}"
+format = " $icon $mem_avail.eng(prefix:M)/$mem_total.eng(prefix:M)($mem_total_used_percents.eng(w:2)) "
 
 [[block]]
 block = "cpu"
 interval = 1
-format = "{frequency}"
+format = " $icon $frequency "
 
 [[block]]
 block = "load"
 interval = 1
-format = "{1m} | {5m} | {15m}"
+format = " $icon $1m.eng(w:4) | $5m.eng(w:4) | $15m.eng(w:4) "
 
 [[block]]
 block = "temperature"
 interval = 10
 scale = "celsius"
-format = "temp: {average}°"
-#format = "{min} min, {max} max, {average} avg"
+format = "$icon $average° "
 chip = "*-isa-*"
 inputs = ["CPUTIN", "SYSTIN"]
 
@@ -41,4 +44,4 @@ block = "sound"
 [[block]]
 block = "time"
 interval = 60
-format = "%R %a %d/%m"
+format = " $icon $timestamp.datetime(f:'%R %a %d/%m', l:fr_BE) "
