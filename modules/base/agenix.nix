@@ -3,6 +3,10 @@
 with lib;
 let
   cfg = config.my.modules.base.agenix;
+  #NOTE: This password (created by mkpasswd -m sha-512) is for seed purpose.. It
+  # also serves as a breakglass when my secrets setup went boom.
+  defaultHashedPasswd =
+    "$6$YrkWwzXEm7Aw11ie$gxRMYpvbdx6m07AGKsZxMCVcGN1br2Pm1y.yikHxxbIG0NsbTRhRNIZF42qmRK/GGPDVwxEHepcYMCwgc1QfW.";
   secretsPath = config.age.secrets.secrets.path;
   jsonToFiles = ''
     echo "[secrets] splitting secrets to its own files..."
@@ -16,6 +20,18 @@ let
        echo "[secrets] splitting $filename..."
        echo $secret > ${secretsPath}_$filename
     done
+
+    #HACK: should we provide more user-specific default passwd?
+    stat ${secretsPath}_nhamlh-passwd
+    if [[ $? -ne 0 ]]; then
+      # make it more recognizable
+      echo "..........................................."
+      echo "..........................................."
+      echo "[secrets] creating default user password..."
+      echo "..........................................."
+      echo "..........................................."
+      echo '${defaultHashedPasswd}' > ${secretsPath}_nhamlh-passwd
+    fi
   '';
 in {
 

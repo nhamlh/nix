@@ -7,11 +7,6 @@ let
   hm = home-manager.nixosModules.home-manager;
   secrets = config.age.secrets.secrets.path;
 
-  #NOTE: This password (created by mkpasswd -m sha-512) is for seed purpose.
-  #Must be updated after installation. It also serves as a breakglass when my
-  #secrets setup went boom
-  defaultHashedPasswd =
-    "$6$YrkWwzXEm7Aw11ie$gxRMYpvbdx6m07AGKsZxMCVcGN1br2Pm1y.yikHxxbIG0NsbTRhRNIZF42qmRK/GGPDVwxEHepcYMCwgc1QfW.";
 in {
   imports = [ hm { } ./base ./graphical ];
 
