@@ -42,7 +42,6 @@ in {
       [ agenix.packages.x86_64-linux.default ];
 
     age = {
-      identityPaths = [ "${config.users.users.nhamlh.home}/.ssh/id_ed25519" ];
       # This one file is a nix expression to host all secrets
       secrets.secrets.file = "${secrets}/secrets.age";
     };
