@@ -5,7 +5,7 @@ with lib;
 let
   cfg = config.my.modules.services.grafana-agent;
   configFile = "grafana-agent/config.yaml";
-  secrets = import config.age.secrets.secrets.path;
+  secrets = config.age.secrets.secrets.path;
 in {
   options.my.modules.services.grafana-agent = {
     enable = mkEnableOption "Grafana Agent";
@@ -65,18 +65,17 @@ in {
         wantedBy = [ "default.target" ];
         restartIfChanged = true;
 
-        environment = {
-          PROM_KEY = "${secrets.keys.prometheus}";
-          LOKI_KEY = "${secrets.keys.loki}";
-        };
-
         serviceConfig = {
           DynamicUser = false;
           User = "root";
-          ExecStart =
-            "${pkgs.grafana-agent}/bin/agent -config.expand-env -config.file=/etc/${configFile}";
           Restart = "always";
         };
+
+        script = ''
+          export PROM_KEY=$(cat ${secrets}_prometheus)
+          export LOKI_KEY=$(cat ${secrets}_loki)
+          ${pkgs.grafana-agent}/bin/agent -config.expand-env -config.file=/etc/${configFile}
+        '';
       };
     };
   };

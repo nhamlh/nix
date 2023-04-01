@@ -4,9 +4,7 @@ with lib;
 let
   cfg = config.my.modules.base.tailscale;
   tsInterface = "tailscale0";
-  secrets = import config.age.secrets.secrets.path;
-  tskey = secrets.keys.tailscale;
-
+  secrets = config.age.secrets.secrets.path;
 in {
   options.my.modules.base.tailscale = {
     enable = mkEnableOption "Tailscale network";
@@ -53,6 +51,8 @@ in {
         if [ $status = "Running" ]; then # if so, then do nothing
           exit 0
         fi
+
+        TAILSCALE_KEY=$(cat ${secrets}_tailscale)
 
         # otherwise authenticate with tailscale
         ${tailscale}/bin/tailscale up -authkey "foobar"
