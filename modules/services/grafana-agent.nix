@@ -62,7 +62,7 @@ in {
         enable = true;
         description = "Grafana Agent";
         after = [ "network.target" ];
-        wantedBy = [ "default.target" ];
+        wantedBy = [ "multi-user.target" ];
         restartIfChanged = true;
 
         serviceConfig = {
