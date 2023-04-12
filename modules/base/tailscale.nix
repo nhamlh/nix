@@ -55,7 +55,7 @@ in {
         TAILSCALE_KEY=$(cat ${secrets}_tailscale)
 
         # otherwise authenticate with tailscale
-        ${tailscale}/bin/tailscale up -authkey "foobar"
+        ${tailscale}/bin/tailscale up -authkey $TAILSCALE_KEY
       '';
     };
   };
