@@ -36,6 +36,13 @@
           specialArgs = inputs;
           modules = [ ./modules ./hosts/dell-mini ];
         };
+
+        lenovo-m900 = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          specialArgs = inputs;
+          modules = [ ./modules ./hosts/lenovo-m900 ];
+        };
       };
     };
 }
