@@ -8,8 +8,8 @@ in {
   options.my.modules.containers.k3s = {
     enable = mkEnableOption "k3s";
     role = lib.mkOption {
+      type = types.enum [ "server" "agent" ];
       description = "Window manager to be used";
-      #FIXME: only agent or server is allowed
       default = "agent";
     };
 
