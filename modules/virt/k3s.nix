@@ -40,7 +40,8 @@ in {
         role = "agent";
         serverAddr = cfg.masterAddr;
         token = agent-token;
-        extraFlags = "--flannel-backend=wireguard-native";
+        extraFlags =
+          "--node-ip ${config.networking.doctorwho.currentHost.ipv4}";
       };
     })
   ]);
