@@ -20,7 +20,10 @@
   outputs = inputs@{ self, nixpkgs, ... }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { config = { allowUnfree = true; }; };
+      pkgs = import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
     in {
       nixosConfigurations = {
         amd-desktop = nixpkgs.lib.nixosSystem {
@@ -44,5 +47,7 @@
           modules = [ ./modules ./hosts/lenovo-m900 ];
         };
       };
+
+      devShells = import ./shell.nix { inherit system pkgs; };
     };
 }
