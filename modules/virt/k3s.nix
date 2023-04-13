@@ -9,11 +9,9 @@ in {
     enable = mkEnableOption "k3s";
     role = lib.mkOption {
       type = types.enum [ "server" "agent" ];
-      description = "Window manager to be used";
       default = "agent";
     };
-
-    agent = { enabled = true; };
+    masterAddr = lib.mkOption { default = "https://localhost:6443"; };
   };
 
   config = mkIf cfg.enable (mkMerge [
@@ -40,7 +38,7 @@ in {
     (mkIf (cfg.role == "agent") {
       services.k3s = {
         role = "agent";
-        serverAddr = lib.mkDefault "https://${TODO}:6443";
+        serverAddr = cfg.masterAddr;
         token = agent-token;
         extraFlags = "--flannel-backend=wireguard-native";
       };
