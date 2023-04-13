@@ -15,7 +15,7 @@
     };
 
     containers.k3s = {
-      enable = false;
+      enable = true;
       role = "server";
     };
 

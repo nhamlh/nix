@@ -12,7 +12,11 @@
   time.timeZone = "Asia/Ho_Chi_Minh";
 
   my.modules = {
-    containers.enable = true;
+    containers.k3s = {
+      enable = true;
+      role = "agent";
+      masterAddr = "https://amd-desktop:6443";
+    };
 
     services = { grafana-agent.enable = true; };
   };
