@@ -40,8 +40,7 @@ in {
         role = "agent";
         serverAddr = cfg.masterAddr;
         token = agent-token;
-        extraFlags =
-          "--node-ip ${config.networking.doctorwho.currentHost.ipv4}";
+        extraFlags = "";
       };
     })
   ]);
