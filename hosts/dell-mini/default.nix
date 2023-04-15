@@ -14,7 +14,10 @@
   my.modules = {
     containers.enable = true;
 
-    services = { grafana-agent.enable = true; };
+    services = {
+      grafana-agent.enable = true;
+      adguard.enable = true;
+    };
   };
 
   system.stateVersion = "22.05";
