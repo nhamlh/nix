@@ -3,7 +3,7 @@
 with lib;
 let
   cfg = config.my.modules.containers.k3s;
-  agent-token = "efc54df42b945feb3ad7829395e77054";
+  tokenFile = "${config.age.secrets.secrets.path}_k3s";
 in {
   options.my.modules.containers.k3s = {
     enable = mkEnableOption "k3s";
@@ -29,7 +29,7 @@ in {
     (mkIf (cfg.role == "server") {
       services.k3s = {
         role = "server";
-        token = agent-token;
+        tokenFile = tokenFile;
         extraFlags = "--disable traefik --flannel-backend=wireguard-native";
 
       };
@@ -39,7 +39,7 @@ in {
       services.k3s = {
         role = "agent";
         serverAddr = cfg.masterAddr;
-        token = agent-token;
+        tokenFile = tokenFile;
         extraFlags = "";
       };
     })
