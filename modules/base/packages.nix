@@ -13,6 +13,7 @@ with lib; {
       tmux
       neovim
       unzip
+      dig
     ];
   };
 }
