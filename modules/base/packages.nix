@@ -14,6 +14,7 @@ with lib; {
       neovim
       unzip
       dig
+      pwgen
     ];
   };
 }
