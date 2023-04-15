@@ -7,7 +7,7 @@
         enable = true;
 
         #TODO Derive from user info
-        userName = "Nham Hoai Le";
+        userName = "Nham Le";
         userEmail = "lehoainham@gmail.com";
 
         ignores = [ "*~" "*.swp" ];
