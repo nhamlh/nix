@@ -43,17 +43,11 @@ zt 0b; z "zpm-zsh/ls"
 zt 0b atload"_zsh_autosuggest_start" ; z "zsh-users/zsh-autosuggestions"
 zt 0b; z "hlissner/zsh-autopair"
 zt 0b src"init.sh"; z "b4b4r07/enhancd"
-zt 0b from"gh-r" as"program"; z "dflemstr/rq"
-zt 0b from"gh-r" pick"*-linux-x64" mv"ffsend-* -> ffsend" as"program";z "timvisee/ffsend"
-zt 0b from"gh-r" pick"*_linux_x64" mv"yq_* -> yq" as"program";z "mikefarah/yq"
-z "asdf-vm/asdf"
 
 # Git plugins
 zt 0b; z "Seinh/git-prune"
 z snippet "OMZ::lib/git.zsh"; z "mdumitru/git-aliases"
 zt 0b; z "voronkovich/gitignore.plugin.zsh"
-zt 0b pick"diff-so-fancy" as"program"; z "so-fancy/diff-so-fancy"
-zt 0b from"gh-r" mv"fzf-* -> fzf" as"program"; z "junegunn/fzf-bin"
 zt 0b pick"shell/*.zsh"; z "junegunn/fzf"
 
 ## Container related plugins
@@ -155,12 +149,8 @@ alias tf="terraform"
 alias tg="terragrunt"
 alias ktx="kubectx"
 alias kns="kubens"
-alias em='emacsclient -create-frame --alternate-editor=""'
-alias u="ffsend upload --copy"
 alias dc="docker-compose"
-alias a="asdf"
 alias ls="exa --icons --sort type"
-alias cdpr="cd $PROOT"
 alias kgpc='kubectl get pod -o=custom-columns="NAME:.metadata.name,STATUS:.status.phase,IP:.status.podIP,NODE:.status.hostIP"'
 alias sd="sudo systemctl"
 
