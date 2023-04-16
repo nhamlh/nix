@@ -74,7 +74,7 @@ in {
         script = ''
           export PROM_KEY=$(cat ${secrets}_prometheus)
           export LOKI_KEY=$(cat ${secrets}_loki)
-          ${pkgs.grafana-agent}/bin/agent -config.expand-env -config.file=/etc/${configFile}
+          ${pkgs.grafana-agent}/bin/agent -disable-reporting -config.expand-env -config.file=/etc/${configFile}
         '';
       };
     };
