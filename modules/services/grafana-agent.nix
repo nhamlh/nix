@@ -35,6 +35,13 @@ in {
               positions:
                 filename: /tmp/positions.yaml
               scrape_configs:
+                - job_name: journal
+                  journal:
+                    json: true
+                    max_age: 12h
+                    path: /var/log/journal
+                    labels:
+                      job: systemd-journal
                 - job_name: varlogs
                   static_configs:
                     - targets: [localhost]
