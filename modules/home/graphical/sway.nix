@@ -39,10 +39,6 @@ let
       schema = pkgs.gsettings-desktop-schemas;
       datadir = "${schema}/share/gsettings-schemas/${schema.name}";
     in ''
-      export DISPLAY=":0.0"
-      export WAYLAND_DISPLAY=wayland-0
-      MOZ_ENABLE_WAYLAND=1
-
       export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
       gnome_schema=org.gnome.desktop.interface
       gsettings set $gnome_schema gtk-theme 'Dracula'
@@ -93,6 +89,13 @@ in {
     programs.sway = {
       enable = true;
       wrapperFeatures.gtk = true;
+      extraSessionCommands = ''
+        export SDL_VIDEODRIVER=wayland
+        export QT_QPA_PLATFORM=wayland
+        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+        export _JAVA_AWT_WM_NONREPARENTING=1
+        export MOZ_ENABLE_WAYLAND=1
+      '';
     };
 
   };
