@@ -3,7 +3,13 @@
 {
   config = {
     home-manager.users.nhamlh = {
-      xdg.configFile."tmux/tmux.conf".source = ./tmux.conf; 
+      programs.tmux = {
+        enable = true;
+        clock24 = true;
+        # TODO other optoins
+
+      };
+      xdg.configFile."tmux/tmux.conf".source = ./tmux.conf;
     };
   };
 }
