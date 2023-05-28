@@ -15,6 +15,9 @@
     };
 
     services = { grafana-agent.enable = true; };
+
+    containers.enable = true;
+
     graphical = {
       enable = true;
       wm = "sway";
