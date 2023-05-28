@@ -209,7 +209,11 @@ bindsym F4 exec "screenshot -g"
 ################################################
 
 # startup applications
-exec        --no-startup-id 'swayidle -w timeout 300 "swaylock -f -c 111111 -e"'
+exec_always --no-startup-id swayidle -w \
+  timeout 300 slock \
+  timeout 600 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"' \
+  before-sleep slock
 exec_always --no-startup-id 'dex -a'
 exec_always --no-startup-id dunst -conf .config/dunstrc
 
@@ -217,7 +221,7 @@ exec_always --no-startup-id dunst -conf .config/dunstrc
 bindsym $mod+space exec "rofi -i -combi-modi window,drun -show combi -modi combi"
 
 # lock screen
-bindsym $mod+n exec --no-startup-id "swaylock -c 000000 -e"
+bindsym $mod+n exec --no-startup-id slock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -228,3 +232,4 @@ bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut.
 # read sway.nix for more info
 exec        --no-startup-id 'dbus-sway-environment'
 exec        --no-startup-id 'configure-gtk'
+

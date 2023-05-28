@@ -17,7 +17,7 @@ in {
 
   config = mkIf cfg.enable {
     home-manager.users.nhamlh = {
-      xdg.configFile."wallpapers".source = ../../../wallpapers;
+      xdg.configFile.wallpapers.source = ../../../wallpapers;
     };
   };
 }

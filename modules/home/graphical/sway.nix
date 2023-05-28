@@ -60,6 +60,17 @@ let
       fi
     '';
   };
+
+  slock = pkgs.writeTextFile {
+    name = "slock";
+    destination = "/bin/slock";
+    executable = true;
+    text = ''
+      # FIXME: $HOME/.config/wallpaper -> xdg.configFile.wallpapers
+      # xdg is only avail within home-manager so can't eval it here
+      swaylock -f -e --indicator-radius 150 -i $HOME/.config/wallpapers/TimeFlies.jpg
+    '';
+  };
 in {
   config = mkIf cfg.enable {
     home-manager.users.nhamlh = {
@@ -79,6 +90,7 @@ in {
         dbus-sway-environment
         configure-gtk
         screenshot
+        slock
       ];
 
       xdg.configFile."sway/config".source = ./sway/config;
