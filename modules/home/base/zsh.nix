@@ -134,6 +134,7 @@ in {
           }
           {
             name = "git-aliases";
+            file = "git-aliases.zsh";
             src = pkgs.fetchFromGitHub {
               owner = "mdumitru";
               repo = "git-aliases";
