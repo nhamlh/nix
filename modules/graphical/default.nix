@@ -15,6 +15,9 @@ in {
   };
 
   config = mkIf cfg.enable {
+    services.xserver.videoDrivers = [ "amdgpu" ];
+    hardware.opengl.enable = true;
+
     services.dbus.enable = true;
 
     xdg = {

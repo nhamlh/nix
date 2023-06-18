@@ -7,7 +7,6 @@ in {
     services.xserver = {
       enable = true;
       autorun = true;
-      videoDrivers = [ "amdgpu" ];
       dpi = 144;
       xkbOptions = "ctrl:swapcaps";
       autoRepeatDelay = 200;
