@@ -21,6 +21,8 @@
         usbutils
         unzip
         xclip
+        awscli
+        aws-mfa
       ];
 
       programs.dircolors = {
