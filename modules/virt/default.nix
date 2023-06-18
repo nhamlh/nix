@@ -13,7 +13,10 @@ in {
 
     environment.systemPackages = with pkgs; [ docker-compose ];
 
-    virtualisation.docker.enable = true;
-    virtualisation.docker.liveRestore = false;
+    virtualisation.docker = {
+      enable = true;
+      liveRestore = false;
+      logDriver = "json-file";
+    };
   };
 }
