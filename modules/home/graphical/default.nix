@@ -18,6 +18,8 @@ in {
   config = mkIf cfg.enable {
     home-manager.users.nhamlh = {
       xdg.configFile.wallpapers.source = ../../../wallpapers;
+
+      home.packages = with pkgs; [ slack ];
     };
   };
 }
