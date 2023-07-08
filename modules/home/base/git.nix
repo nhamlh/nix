@@ -10,17 +10,22 @@
         userName = "Nham Le";
         userEmail = "lehoainham@gmail.com";
 
-        ignores = [ "*~" "*.swp" ];
+        ignores = [ "*~" "*.swp" ".envrc" ".direnv" ".devenv" ];
 
         diff-so-fancy = { enable = true; };
 
         extraConfig = {
-          init.defaultBranch = "master"; # based.
+          init.defaultBranch = "main"; # based.
           core.editor = "nvim";
           credential.helper = "store --file ~/.git-credentials";
           pull.rebase = "false";
           # For supercede
           core.symlinks = true;
+
+          # Sign all commits using ssh key
+          commit.gpgsign = true;
+          gpg.format = "ssh";
+          user.signingkey = "~/.ssh/id_ed25519.pub";
         };
       };
     };
