@@ -12,6 +12,7 @@ in {
         firefox
         chromium
         tdesktop
+        zoom-us
       ];
     };
   };
