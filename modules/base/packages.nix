@@ -7,6 +7,7 @@ with lib; {
       gcc
       openssl
       zsh
+      bash
       git
       curl
       wget
@@ -15,6 +16,8 @@ with lib; {
       unzip
       dig
       pwgen
+      lm_sensors
+      tree
     ];
   };
 }
