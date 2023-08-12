@@ -13,6 +13,7 @@ in {
         chromium
         tdesktop
         zoom-us
+        drawio
       ];
     };
   };
