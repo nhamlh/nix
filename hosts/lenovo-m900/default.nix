@@ -18,7 +18,10 @@
       #masterAddr = "https://dell-mini:6443";
     };
 
-    services = { grafana-agent.enable = true; };
+    services = {
+      grafana-agent.enable = true;
+      adguard.enable = true;
+    };
   };
 
   system.stateVersion = "22.05";
