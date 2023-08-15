@@ -14,8 +14,8 @@
   my.modules = {
     containers.k3s = {
       enable = true;
-      role = "agent";
-      masterAddr = "https://dell-mini:6443";
+      role = "server";
+      #masterAddr = "https://dell-mini:6443";
     };
 
     services = { grafana-agent.enable = true; };
