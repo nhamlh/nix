@@ -6,7 +6,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "dell-mini";
+  networking.hostName = "ena";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Asia/Ho_Chi_Minh";
