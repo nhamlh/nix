@@ -42,3 +42,6 @@ mv hosts/$HOST/configuration.nix hosts/$HOST/default.nix
 ``` sh
 NIXPKGS_ALLOW_UNFREE=1 nixos-install --root /mnt --impure --flake ${NIX_REPO_PATH}#$HOST
 ```
+
+# Host naming
+servers fleet are named of greek numbers. For example from one to ten: ena, thio, tria, tessera, pendi, exi, efta, ochto, ennea, theka.
