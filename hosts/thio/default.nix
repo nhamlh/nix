@@ -6,7 +6,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "lenovo-m900";
+  networking.hostName = "thio";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Asia/Ho_Chi_Minh";
@@ -14,8 +14,8 @@
   my.modules = {
     containers.k3s = {
       enable = true;
-      role = "server";
-      #masterAddr = "https://dell-mini:6443";
+      role = "agent";
+      masterAddr = "https://ena:6443";
     };
 
     services = {

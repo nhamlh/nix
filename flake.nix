@@ -40,11 +40,11 @@
           modules = [ ./modules ./hosts/ena ];
         };
 
-        lenovo-m900 = nixpkgs.lib.nixosSystem {
+        thio = nixpkgs.lib.nixosSystem {
           inherit system;
 
           specialArgs = inputs;
-          modules = [ ./modules ./hosts/lenovo-m900 ];
+          modules = [ ./modules ./hosts/thio ];
         };
       };
 
