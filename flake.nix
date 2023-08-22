@@ -33,11 +33,11 @@
           modules = [ ./modules ./hosts/amd-desktop ];
         };
 
-        dell-mini = nixpkgs.lib.nixosSystem {
+        ena = nixpkgs.lib.nixosSystem {
           inherit system;
 
           specialArgs = inputs;
-          modules = [ ./modules ./hosts/dell-mini ];
+          modules = [ ./modules ./hosts/ena ];
         };
 
         lenovo-m900 = nixpkgs.lib.nixosSystem {
