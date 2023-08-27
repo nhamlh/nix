@@ -3,7 +3,7 @@
 with lib;
 let cfg = config.my.modules.graphical;
 in {
-  imports = [ ./i3.nix ./sway.nix ];
+  imports = [ ./i3.nix ./sway.nix ./hyprland.nix ];
 
   options.my.modules.graphical = {
     enable = mkEnableOption "Graphical module";

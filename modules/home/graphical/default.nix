@@ -8,6 +8,7 @@ in {
     ./packages.nix
     ./i3.nix
     ./sway.nix
+    ./hyprland.nix
     ./dunst.nix
     ./thunar.nix
     ./rofi.nix
