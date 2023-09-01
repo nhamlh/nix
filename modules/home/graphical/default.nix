@@ -14,6 +14,7 @@ in {
     ./rofi.nix
     ./alacritty.nix
     ./mpv.nix
+    ./waybar.nix
   ];
 
   config = mkIf cfg.enable {
