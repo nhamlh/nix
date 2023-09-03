@@ -174,7 +174,7 @@ bar {
         height 36
         position top
         # FIXME: do not depends on i3status-rs
-        status_command i3status-rs ~/.config/sway/i3status-rs.toml
+        status_command waybar
 
         colors {
         separator #666666
