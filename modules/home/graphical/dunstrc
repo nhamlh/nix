@@ -1,170 +1,199 @@
 [global]
-font = FiraCode Nerd Font 15
 
-width = 600
-height = 80
-origin = top-right
+    # --- Display --- #
 
-markup = yes
+    # The monitor to be displayed to
+    monitor = 0
 
-# The format of the message.  Possible variables are:
-#   %a  appname
-#   %s  summary
-#   %b  body
-#   %i  iconname (including its path)
-#   %I  iconname (without its path)
-#   %p  progress value if set ([  0%] to [100%]) or nothing
-# Markup is allowed
-format = "%a > <b>%s</b>\n%b"
+    # Follow monitor with mouse
+    follow = mouse
 
-# Sort messages by urgency.
-sort = no
+    width = 450
+    # height = 260
+    origin = top-right
+    offset = 24x24
 
-# Show how many messages are currently hidden (because of geometry).
-indicate_hidden = yes
+    progress_bar = true
+    progress_bar_height = 14
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 450
 
-# Alignment of message text.
-# Possible values are "left", "center" and "right".
-alignment = center
+    # Show how many messages are hidden
+    indicate_hidden = yes
 
-# Show age of message if message is older than show_age_threshold
-# seconds.
-# Set to -1 to disable.
-show_age_threshold = -1
+    # Shrink window if it's smaller than the width.
+    shrink = no
 
-# Split notifications into multiple lines if they don't fit into
-# geometry.
-word_wrap = yes
+    # The transparency of the window.
+    transparency = 1
 
-# Ignore newlines '\n' in notifications.
-ignore_newline = no
+    # Draw a line between multiple notifications
+    separator_height = 6
 
-# Hide duplicate's count and stack them
-stack_duplicates = yes
-hide_duplicate_count = no
+    separator_color = "#282a36"
 
-# Shrink window if it's smaller than the width.  Will be ignored if
-# width is 0.
-shrink = no
+    # Set notification padding
+    padding = 16
+    horizontal_padding = 16
 
-# The transparency of the window.  Range: [0; 100].
-# This option will only work if a compositing windowmanager is
-# present (e.g. xcompmgr, compiz, etc.).
-transparency = 5
+    # Disable frame (border)
+    frame_width = 0
 
-# Don't remove messages, if the user is idle (no mouse or keyboard input)
-# for longer than idle_threshold seconds.
-# Set to 0 to disable.
-idle_threshold = 0
+    # Sort messages by urgency.
+    sort = no
 
-# Which monitor should the notifications be displayed on.
-monitor = 0
+    # Disable idle time
+    idle_threshold = 0
 
-# Display notification on focused monitor.  Possible modes are:
-#   mouse: follow mouse pointer
-#   keyboard: follow window with keyboard focus
-#   none: don't follow anything
-#
-# "keyboard" needs a windowmanager that exports the
-# _NET_ACTIVE_WINDOW property.
-# This should be the case for almost all modern windowmanagers.
-#
-# If this option is set to mouse or keyboard, the monitor option
-# will be ignored.
-follow = none
+    # --- Text --- #
 
-# Should a notification popped up from history be sticky or timeout
-# as if it would normally do.
-sticky_history = yes
+    # Set the font
+    # font = "Noto Sans 11"
+    font = "JetBrainsMono 15"
 
-# Maximum amount of notifications kept in history
-history_length = 15
+    # Set line height to font height
+    line_height = 0
 
-# Display indicators for URLs (U) and actions (A).
-show_indicators = no
+    # Reference for markup and formatting:
+    #  <b>bold</b>
+    #  <i>italic</i>
+    #  <s>strikethrough</s>
+    #  <u>underline</u>
+    #  <https://developer.gnome.org/pango/stable/pango-Markup.html>.
+    #  %a appname
+    #  %s summary
+    #  %b body
+    #  %i iconname (including its path)
+    #  %I iconname (without its path)
+    #  %p progress value if set ([  0%] to [100%]) or nothing
+    #  %n progress value if set without any extra characters
+    #  %% Literal %
 
-# The height of a single line.  If the height is smaller than the
-# font height, it will get raised to the font height.
-# This adds empty space above and under the text.
-line_height = 3
+    markup = full
+    format = "<b>%a</b>\n%s"
 
-# Draw a line of "separatpr_height" pixel height between two
-# notifications.
-# Set to 0 to disable.
-separator_height = 2
+    # Left align the text
+    alignment = left
 
-# Padding between text and separator.
-padding = 6
+    # Vertical alignment of message text and icon.
+    vertical_alignment = center
 
-# Horizontal padding.
-horizontal_padding = 6
+    # Show age of message if message is old
+    show_age_threshold = 120
 
-# Define a color for the separator.
-# possible values are:
-#  * auto: dunst tries to find a color fitting to the background;
-#  * foreground: use the same color as the foreground;
-#  * frame: use the same color as the frame;
-#  * anything else will be interpreted as a X color.
-separator_color = frame
+    # Wrap text if it doesn't fit in geometry
+    word_wrap = yes
 
-# dmenu path.
-dmenu = /usr/bin/dmenu -p dunst:
+    # Where to place ellipses if word wrap is disabled
+    # ellipsize = middle
 
-# Browser for opening urls in context menu.
-browser = /usr/bin/firefox -new-tab
+    # Use newlines '\n' in notifications.
+    ignore_newline = no
 
-# Align icons left/right/off
-icon_position = off
-max_icon_size = 80
+    # Don't stack together notifications
+    stack_duplicates = false
 
-# Paths to default icons.
-icon_path = /usr/share/icons/Paper/16x16/mimetypes/:/usr/share/icons/Paper/48x48/status/:/usr/share/icons/Paper/16x16/devices/:/usr/share/icons/Paper/48x48/notifications/:/usr/share/icons/Paper/48x48/emblems/
+    # Hide the count of stacked notifications
+    # hide_duplicate_count = false
 
-frame_width = 5
-frame_color = "#8EC07C"
+    # Display indicators for URLs (U) and actions (A).
+    show_indicators = yes
 
-[shortcuts]
 
-# Shortcuts are specified as [modifier+][modifier+]...key
-# Available modifiers are "ctrl", "mod1" (the alt-key), "mod2",
-# "mod3" and "mod4" (windows-key).
-# Xev might be helpful to find names for keys.
+    # ---- Icons ---- #
 
-# Close notification.
-close = ctrl+space
+    # Align icons left/right/off
+    icon_position = left
 
-# Close all notifications.
-close_all = ctrl+shift+space
+    # Scale small icons up to this size, set to 0 to disable.
+    min_icon_size = 50
 
-# Redisplay last message(s).
-# On the US keyboard layout "grave" is normally above TAB and left
-# of "1".
-history = ctrl+grave
+    # Scale larger icons down to this size, set to 0 to disable
+    max_icon_size = 60
 
-# Context menu.
-context = ctrl+shift+period
+    # Paths to default icons.
+    icon_path = ~/.local/share/icons/kora/apps/scalable:~/.local/share/icons/kora/status/scalable:~/.local/share/icons/kora/actions/scalable:~/.local/share/icons/kora/emblems/scalable:~/.local/share/icons/kora/devices/scalable
+
+    # --- History --- #
+
+    # Avoid timing out hidden notifications
+    sticky_history = yes
+
+    # Maximum amount of notifications kept in history
+    history_length = 120
+
+
+    # --- Misc/Advanced --- #
+
+    dmenu = /usr/bin/dmenu -p dunst:
+
+    # Browser for opening urls in context menu.
+    browser = /usr/bin/firefox -new-tab
+
+    # Always run rule-defined scripts, even if the notification is suppressed
+    always_run_script = false
+
+    # Define the title of the windows spawned by dunst
+    title = Dunst
+
+    # Define the class of the windows spawned by dunst
+    class = Dunst
+
+    # Define the corner radius of the notification window
+    corner_radius = 10
+
+    # Don't gnore the dbus closeNotification message.
+    ignore_dbusclose = false
+
+
+    # --- Legacy --- #
+
+    # Use the Xinerama extension instead of RandR for multi-monitor support.
+    force_xinerama = false
+
+
+    # --- Mouse --- #
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+
+[experimental]
+    per_monitor_dpi = false
 
 [urgency_low]
-# IMPORTANT: colors have to be defined in quotation marks.
-# Otherwise the "#" and following would be interpreted as a comment.
-frame_color = "#3B7C87"
-foreground = "#3B7C87"
-background = "#191311"
-#background = "#2B313C"
-timeout = 4
+    frame_color = "#1D918B"
+    highlight = "#6fa6e7"
+    foreground = "#FFEE79"
+    background = "#18191E"
+    timeout = 5
 
 [urgency_normal]
-frame_color = "#5B8234"
-foreground = "#5B8234"
-background = "#191311"
-#background = "#2B313C"
-timeout = 6
+    frame_color = "#D16BB7"
+    highlight = "#5ca1ff"
+    foreground = "#FFEE79"
+    background = "#18191E"
+    timeout = 8
 
 [urgency_critical]
-frame_color = "#B7472A"
-foreground = "#B7472A"
-background = "#191311"
-#background = "#2B313C"
-timeout = 8
+    frame_color = "#FC2929"
+    highlight = "#fe6c5a"
+    foreground = "#ff4444"
+    background = "#18191E"
+    timeout = 20
+    icon = battery-ac-adapter
 
-# vim: ft=cfg
+[backlight]
+    appname = "Backlight"
+    highlight = "#fc7b80"
+
+[music]
+    appname = "Music"
+
+[volume]
+    summary = "Volume*"
+    highlight = "#cb8cf4"
+
+[battery]
+    appname = "Power Warning"
