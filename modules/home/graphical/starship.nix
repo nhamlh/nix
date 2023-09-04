@@ -1,28 +1,34 @@
-{ config, lib, pkgs, ... }: {
-  programs.starship = {
-    enable = true;
-    enableBashIntegration = false;
-    enableFishIntegration = false;
-    settings = {
-      add_newline = false;
-      format = lib.concatStrings [
-        "$username"
-        "$hostname"
-        "$directory"
-        "$git_branch"
-        "$git_commit"
-        "$git_state"
-        "$git_status"
-        "$package"
-        "$haskell"
-        "$python"
-        "$rust"
-        "$nix_shell"
-        "$line_break"
-        "$jobs"
-        "$character"
-      ];
-      nix_shell.symbol = "❄️ ";
+{ config, lib, pkgs, ... }:
+
+with lib;
+let cfg = config.my.modules.graphical;
+in {
+  config = mkIf cfg.enable {
+    home-manager.users.nhamlh = {
+      programs.starship = {
+        enable = true;
+        settings = {
+          add_newline = true;
+          format = lib.concatStrings [
+            "$username"
+            "$hostname"
+            "$directory"
+            "$package"
+            "$golang"
+            "$python"
+            "$nodejs"
+            "$nix_shell"
+            "$git_branch"
+            "$git_commit"
+            "$git_state"
+            "$git_status"
+            "$line_break"
+            "$jobs"
+            "$character"
+          ];
+          nix_shell.symbol = "❄️ ";
+        };
+      };
     };
   };
 }

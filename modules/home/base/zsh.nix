@@ -79,15 +79,6 @@ in {
 
         plugins = [
           {
-            name = "pure";
-            src = pkgs.fetchFromGitHub {
-              owner = "sindresorhus";
-              repo = "pure";
-              rev = "2f13dea466466dde1ba844ba5211e7556f4ae2db";
-              sha256 = "YfasTKCABvMtncrfoWR1Su9QxzCqPED18/BTXaJHttg=";
-            };
-          }
-          {
             name = "alias-tips";
             src = pkgs.fetchFromGitHub {
               owner = "djui";
