@@ -3,6 +3,7 @@
 with lib; {
   config = {
     environment.systemPackages = with pkgs; [
+      nfs-utils
       gnumake
       gcc
       openssl
