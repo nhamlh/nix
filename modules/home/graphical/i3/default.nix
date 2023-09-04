@@ -8,7 +8,7 @@ in {
     services.xserver.windowManager.i3.package = pkgs.i3-gaps;
 
     home-manager.users.nhamlh = {
-      home.packages = with pkgs; [ xbindkey i3status-rust feh scrot ];
+      home.packages = with pkgs; [ xbindkey i3status-rust imv scrot ];
 
       home.file.".xbindkeysrc".source = ./xbindkeysrc;
       home.file.".Xresources".source = ./Xresources;
