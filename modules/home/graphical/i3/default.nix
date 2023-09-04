@@ -12,9 +12,9 @@ in {
 
       home.file.".xbindkeysrc".source = ./xbindkeysrc;
       home.file.".Xresources".source = ./Xresources;
-      xdg.configFile."i3/config".source = ./i3/config;
-      xdg.configFile."i3/i3status-rs.toml".source = ./i3/i3status-rs.toml;
-      xdg.configFile."compton.conf".source = ./i3/compton.conf;
+      xdg.configFile."i3/config".source = ./config;
+      xdg.configFile."i3/i3status-rs.toml".source = ./i3status-rs.toml;
+      xdg.configFile."compton.conf".source = ./compton.conf;
     };
   };
 }

@@ -170,23 +170,9 @@ bindsym $mod+Control+Right focus output right
 # Status bar
 ################################################
 bar {
-        font pango:FiraCode Nerd Font 15
-        height 36
-        position top
-        # FIXME: do not depends on i3status-rs
-        status_command waybar
-
-        colors {
-        separator #666666
-        background #222222
-        statusline #dddddd
-        focused_workspace #0088CC #0088CC #ffffff
-        active_workspace #333333 #333333 #ffffff
-        inactive_workspace #333333 #333333 #888888
-        urgent_workspace #2f343a #900000 #ffffff
-    }
+       position top
+       swaybar_command waybar
 }
-
 
 ################################################
 # Custom keybindings

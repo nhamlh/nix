@@ -78,7 +78,6 @@ in {
         sway
         swaylock
         swayidle
-        i3status-rust # FIXME: do not depends on i3status-rs
         grim # screenshot functionality
         slurp # screenshot functionality
         wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
@@ -93,9 +92,7 @@ in {
         slock
       ];
 
-      xdg.configFile."sway/config".source = ./sway/config;
-      # FIXME: do not depends on i3status-rs
-      xdg.configFile."sway/i3status-rs.toml".source = ./i3/i3status-rs.toml;
+      xdg.configFile."sway/config".source = ./config;
     };
 
     programs.sway = {

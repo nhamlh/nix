@@ -7,10 +7,7 @@ in {
     home-manager.users.nhamlh = {
       programs.waybar = {
         enable = true;
-        systemd = {
-          enable = false;
-          target = "graphical-session.target";
-        };
+        systemd = { enable = false; };
         style = ''
           @define-color critical #ff0000; /* critical color */
           @define-color warning #f3f809;  /* warning color */

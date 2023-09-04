@@ -5,15 +5,14 @@ let cfg = config.my.modules.graphical;
 in {
 
   imports = [
-    ./packages.nix
-    ./i3.nix
-    ./sway.nix
-    ./hyprland.nix
-    ./dunst.nix
-    ./thunar.nix
-    ./rofi.nix
-    ./alacritty.nix
+    ./alacritty
+    ./dunst
+    ./hyprland
+    ./i3
+    ./rofi
+    ./sway
     ./mpv.nix
+    ./thunar.nix
     ./waybar.nix
   ];
 
@@ -21,7 +20,17 @@ in {
     home-manager.users.nhamlh = {
       xdg.configFile.wallpapers.source = ../../../wallpapers;
 
-      home.packages = with pkgs; [ slack ];
+      home.packages = with pkgs; [
+        nvtop
+        dex # generate and execute DesktopEntry files of the type Application
+        feh
+        firefox
+        chromium
+        tdesktop
+        zoom-us
+        drawio
+        slack
+      ];
     };
   };
 }
