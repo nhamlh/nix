@@ -1,8 +1,15 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ ./git.nix ./zsh.nix ./fzf.nix ./tmux.nix ./direnv.nix ./emacs.nix ];
+  imports = [
+    ./git.nix
+    ./zsh.nix
+    ./fzf.nix
+    ./tmux.nix
+    ./direnv.nix
+    ./emacs.nix
+    ./starship.nix
+  ];
 
   config = {
     home-manager.users.nhamlh = {

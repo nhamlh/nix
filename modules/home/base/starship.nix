@@ -3,7 +3,7 @@
 with lib;
 let cfg = config.my.modules.graphical;
 in {
-  config = mkIf cfg.enable {
+  config = {
     home-manager.users.nhamlh = {
       programs.starship = {
         enable = true;

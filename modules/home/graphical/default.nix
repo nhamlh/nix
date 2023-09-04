@@ -12,7 +12,6 @@ in {
     ./rofi
     ./sway
     ./mpv.nix
-    ./starship.nix
     ./thunar.nix
     ./waybar.nix
   ];
