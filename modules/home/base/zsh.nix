@@ -75,6 +75,8 @@ in {
           kgpc =
             "kubectl get pod -o=custom-columns='NAME:.metadata.name,STATUS:.status.phase,IP:.status.podIP,NODE:.status.hostIP'";
           sd = "sudo systemctl";
+          git_current_branch =
+            "git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'";
         };
 
         plugins = [
