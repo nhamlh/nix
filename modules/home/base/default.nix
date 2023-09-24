@@ -17,7 +17,7 @@
         (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
 
         python3
-        exa
+        eza
         fd
         kubectl
         k9s
