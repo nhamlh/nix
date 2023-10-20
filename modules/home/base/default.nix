@@ -30,6 +30,7 @@
         xclip
         awscli
         aws-mfa
+        shellcheck
       ];
 
       programs.dircolors = {
