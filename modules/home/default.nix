@@ -15,7 +15,7 @@ in {
       isNormalUser = true;
       extraGroups = [ "wheel" "docker" ];
       home = "/home/nhamlh";
-      passwordFile = "${config.age.secrets.secrets.path}_nhamlh-passwd";
+      hashedPasswordFile = "${config.age.secrets.secrets.path}_nhamlh-passwd";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKmPhGYUluyUQ2j/pcF+2hyC38HBMnkyPYd3Mq3IlI8d nhamlh@somewhereonearth"
       ];
