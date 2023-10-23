@@ -17,11 +17,6 @@
       role = "agent";
       masterAddr = "https://ena:6443";
     };
-
-    services = {
-      grafana-agent.enable = true;
-      adguard.enable = true;
-    };
   };
 
   system.stateVersion = "22.05";

@@ -17,10 +17,7 @@
       role = "server";
     };
 
-    services = {
-      grafana-agent.enable = true;
-      adguard.enable = true;
-    };
+    services = { adguard.enable = true; };
   };
 
   system.stateVersion = "22.05";
