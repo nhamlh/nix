@@ -79,6 +79,7 @@ in {
             "git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'";
         };
 
+        # use nix-prefetch-git (via nix-shell) to fetch sha256 for plugins: `nix-prefetch-git https://github.com/owner/repo rev`
         plugins = [
           {
             name = "alias-tips";
@@ -112,8 +113,8 @@ in {
             src = pkgs.fetchFromGitHub {
               owner = "zpm-zsh";
               repo = "ls";
-              rev = "2db52bcab188b161d71df04c1265646be8f2dda4";
-              sha256 = "4Tuc5N14xKx5ArQAoIovn4eXAVKHoFxnfE0A0eG67GM=";
+              rev = "3fed7542572a552f97ffbadbdfd1af10e7f89c45";
+              sha256 = "1b4wgswl3gx3f66xw6kq96ngwzn64k50z8lj3h0mbfpxb5ilvbcs";
             };
           }
           {
