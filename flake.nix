@@ -20,33 +20,23 @@
   outputs = inputs@{ self, nixpkgs, ... }:
     let
       system = "x86_64-linux";
+
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
       };
+
+      hosts = pkgs.lib.mapAttrsToList (n: v: n)
+        (pkgs.lib.filterAttrs (n: v: v == "directory")
+          (builtins.readDir ./hosts));
     in {
-      nixosConfigurations = {
-        amd-desktop = nixpkgs.lib.nixosSystem {
+      nixosConfigurations = pkgs.lib.genAttrs hosts (h:
+        nixpkgs.lib.nixosSystem {
           inherit system;
 
           specialArgs = inputs;
-          modules = [ ./modules ./hosts/amd-desktop ];
-        };
-
-        ena = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          specialArgs = inputs;
-          modules = [ ./modules ./hosts/ena ];
-        };
-
-        thio = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          specialArgs = inputs;
-          modules = [ ./modules ./hosts/thio ];
-        };
-      };
+          modules = [ ./modules (./. + "/hosts/${h}") ];
+        });
 
       devShells = import ./shell.nix { inherit system pkgs; };
     };
