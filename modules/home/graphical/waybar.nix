@@ -323,7 +323,7 @@ in {
             "format" = "󰍛 {usage}%";
             #"format"= " &#8239;{usage}%";
             "tooltip" = false;
-            "on-click" = "alacritty -e zenith";
+            "on-click" = "alacritty -e btm";
           };
 
           "disk" = { "format" = "  {free}"; };

@@ -24,7 +24,7 @@
         yq
         ripgrep
         diff-so-fancy
-        zenith
+        bottom # htop/zenith replacement
         usbutils
         unzip
         xclip
