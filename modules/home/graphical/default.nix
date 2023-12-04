@@ -30,6 +30,7 @@ in {
         zoom-us
         drawio
         slack
+        foliate # ebook reader
       ];
     };
   };
