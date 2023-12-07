@@ -21,6 +21,7 @@ with lib; {
       lm_sensors
       tree
       file
+      unzip
     ];
   };
 }

@@ -31,6 +31,7 @@ in {
         drawio
         slack
         foliate # ebook reader
+        kitty
       ];
     };
   };

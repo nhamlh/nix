@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 
-{
+let
+
+  gdk = pkgs.google-cloud-sdk.withExtraComponents
+    (with pkgs.google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]);
+in {
   imports = [
     ./git.nix
     ./zsh.nix
@@ -26,11 +30,11 @@
         diff-so-fancy
         bottom # htop/zenith replacement
         usbutils
-        unzip
+        shellcheck
         xclip
         awscli
         aws-mfa
-        shellcheck
+        gdk
       ];
 
       programs.dircolors = {
@@ -42,6 +46,7 @@
         enable = true;
         config = { theme = "Solarized (light)"; };
       };
+
     };
   };
 }
