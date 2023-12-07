@@ -20,6 +20,7 @@ with lib; {
       pwgen
       lm_sensors
       tree
+      file
     ];
   };
 }
