@@ -105,6 +105,7 @@ in {
         export _JAVA_AWT_WM_NONREPARENTING=1
         export MOZ_ENABLE_WAYLAND=1
         export NIXOS_OZONE_WL=1
+        export XCURSOR_THEME=Adwaita # Ref: https://github.com/alacritty/alacritty/issues/4780
       '';
     };
 
