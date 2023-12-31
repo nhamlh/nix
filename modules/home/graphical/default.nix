@@ -32,6 +32,7 @@ in {
         slack
         foliate # ebook reader
         kitty
+        thunderbird
       ];
     };
   };
