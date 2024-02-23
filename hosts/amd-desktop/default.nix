@@ -25,5 +25,15 @@
     gaming = { steam.enable = true; };
   };
 
+  # ZFS support.
+  # Ref: https://openzfs.github.io/openzfs-docs/Getting%20Started/NixOS/index.html
+  # Ref: https://nixos.wiki/wiki/ZFS
+  networking.hostId = "ba719b2f"; # head -c4 /dev/urandom | od -A none -t x4
+  boot = {
+    supportedFilesystems = [ "zfs" ];
+    zfs.forceImportRoot = false;
+    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  };
+
   system.stateVersion = "22.05"; # Did you read the comment?
 }
