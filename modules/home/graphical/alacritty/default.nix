@@ -19,6 +19,7 @@ in {
       };
 
       xdg.configFile."alacritty/alacritty.toml".source = ./alacritty.toml;
+      xdg.configFile."alacritty/solarized_light.toml".source = ./solarized_light.toml;
     };
   };
 }
