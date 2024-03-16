@@ -1,7 +1,7 @@
 live_config_reload = true
 
 import = [
-       "~/.config/alacritty/themes/themes/solarized_light.toml"
+       "~/.config/alacritty/solarized_light.toml"
 ]
 
 [colors]
