@@ -6,6 +6,7 @@ let
     (with pkgs.google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]);
 in {
   imports = [
+    ./lang.nix
     ./git.nix
     ./zsh.nix
     ./fzf.nix
@@ -20,7 +21,6 @@ in {
       home.packages = with pkgs; [
         (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
 
-        python3
         eza
         fd
         kubectl
@@ -30,11 +30,11 @@ in {
         diff-so-fancy
         bottom # htop/zenith replacement
         usbutils
-        shellcheck
         xclip
         awscli
         aws-mfa
         gdk
+        sqlite
       ];
 
       programs.dircolors = {

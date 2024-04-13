@@ -5,6 +5,7 @@ with lib; {
     environment.systemPackages = with pkgs; [
       nfs-utils
       gnumake
+      cmake
       glibc
       gcc
       openssl
