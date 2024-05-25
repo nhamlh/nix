@@ -217,8 +217,3 @@ bindsym $mod+Shift+c reload
 
 # exit sway (logs you out of your X session)
 bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your session.' -b 'Yes, exit sway' 'swaymsg exit'"
-
-# read sway.nix for more info
-exec        --no-startup-id 'dbus-sway-environment'
-exec        --no-startup-id 'configure-gtk'
-
