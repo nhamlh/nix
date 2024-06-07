@@ -21,7 +21,7 @@ in {
       xdg.configFile.wallpapers.source = ../../../wallpapers;
 
       home.packages = with pkgs; [
-        nvtop
+        nvtopPackages.full
         dex # generate and execute DesktopEntry files of the type Application
         imv
         firefox
