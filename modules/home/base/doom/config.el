@@ -5,29 +5,29 @@
 
 ;; UI
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 17.0))
-; (setq doom-theme 'doom-one-light)
+                                        ; (setq doom-theme 'doom-one-light)
 (setq doom-theme 'doom-solarized-light)
 (setq display-line-numbers-type 'relative)
 ;; Enable modeline for popup windows
 (plist-put +popup-defaults :modeline t)
 (setq doom-scratch-buffer-major-mode 'emacs-lisp-mode)
 
-; (after! format
-;  (define-format-all-formatter cue
-;    (:executable "cue")
-;    (:modes cue)
-;    (:format
-;      (format-all--buffer-easy
-;      executable
-;      (when (buffer-file-name)
-;        (list " " (buffer-file-name)))))))
+                                        ; (after! format
+                                        ;  (define-format-all-formatter cue
+                                        ;    (:executable "cue")
+                                        ;    (:modes cue)
+                                        ;    (:format
+                                        ;      (format-all--buffer-easy
+                                        ;      executable
+                                        ;      (when (buffer-file-name)
+                                        ;        (list " " (buffer-file-name)))))))
 (set-formatter! 'cue "cue fmt " :modes '(cue-mode))
 
-; open emacs on macOS will result in tiny window without this setting
+                                        ; open emacs on macOS will result in tiny window without this setting
 (toggle-frame-maximized)
 
 (setq-default eglot-workspace-configuration
- '((:gopls . ((gofumpt . t)))))
+              '((:gopls . ((gofumpt . t)))))
 
 ;; has to be set before org loaded
 (setq org-directory (getenv "EMACS_ORG_DIR"))
@@ -151,31 +151,31 @@
 
 (setq org-roam-directory org-directory)
 (use-package! websocket
-    :after org-roam)
+  :after org-roam)
 
 (use-package! org-roam-ui
-    :after org-roam ;; or :after org
-;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-;;         a hookable mode anymore, you're advised to pick something yourself
-;;         if you don't care about startup time, use
-;;  :hook (after-init . org-roam-ui-mode)
-    :config
-    (setq org-roam-ui-sync-theme t
-          org-roam-ui-follow t
-          org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start t))
+  :after org-roam ;; or :after org
+  ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+  ;;         a hookable mode anymore, you're advised to pick something yourself
+  ;;         if you don't care about startup time, use
+  ;;  :hook (after-init . org-roam-ui-mode)
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
 
 (use-package! ob-mermaid 
-    :after org
-    :config
+  :after org
+  :config
 
-    (setq ob-mermaid-cli-path "/opt/homebrew/bin/mmdc")
+  (setq ob-mermaid-cli-path "/opt/homebrew/bin/mmdc")
 
-    (org-babel-do-load-languages
-    'org-babel-load-languages
-    '((mermaid . t)
-      (scheme . t)
-      (your-other-langs . t))))
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((mermaid . t)
+     (scheme . t)
+     (your-other-langs . t))))
 
 (after! org-pomodoro
   (setq org-pomodoro-length 45))
@@ -187,9 +187,9 @@ except that buffer-creating behaviour.
 It creates a doom popup and focus on it instead of a normal window."
   (interactive)
   (let* ((marker (or (org-get-at-bol 'org-marker)
-		                 (org-agenda-error)))
-	       (buffer (marker-buffer marker))
-	       (pos (marker-position marker)))
+		     (org-agenda-error)))
+	 (buffer (marker-buffer marker))
+	 (pos (marker-position marker)))
     (kill-this-buffer)
     (+popup-buffer buffer '((window-height . 0.5) (window-parameters (select . t ))))
     (widen)
@@ -200,26 +200,23 @@ It creates a doom popup and focus on it instead of a normal window."
       (recenter (/ (window-height) 2))
       (org-back-to-heading t)
       (let ((case-fold-search nil))
-	      (when (re-search-forward org-complex-heading-regexp nil t)
-	        (goto-char (match-beginning 4)))))
+	(when (re-search-forward org-complex-heading-regexp nil t)
+	  (goto-char (match-beginning 4)))))
     (run-hooks 'org-agenda-after-show-hook)
     (and highlight (org-highlight (point-at-bol) (point-at-eol)))))
 
 (after! evil-org-agenda
   (map! :map evil-org-agenda-mode-map
-       :m "TAB"  #'+nhamlh/org-agenda-goto
-       :m "<tab>"  #'+nhamlh/org-agenda-goto))
+        :m "TAB"  #'+nhamlh/org-agenda-goto
+        :m "<tab>"  #'+nhamlh/org-agenda-goto))
 
 (after! projectile
   ;; Init projectile's search dirs
   (setq projectile-project-search-path (split-string (getenv "EMACS_PROJECTILE_SEARCH_DIRS") ";")))
 
 (add-hook 'after-init-hook (lambda ()
-  (when (fboundp 'auto-dim-other-buffers-mode)
-    (auto-dim-other-buffers-mode t))))
-
-(after! ivy
-  (setq counsel-projectile-rg-initial-input '(ivy-thing-at-point)))
+                             (when (fboundp 'auto-dim-other-buffers-mode)
+                               (auto-dim-other-buffers-mode t))))
 
 (after! magit
   (set-popup-rule! "^magit:\s" :height 0.5 :side 'bottom :select t :modeline t :quit 'current))
@@ -227,10 +224,6 @@ It creates a doom popup and focus on it instead of a normal window."
 (after! prodigy
   (set-popup-rule! "^\*prodigy*" :height 0.35 :side 'bottom :select t :modeline t :quit 'current))
 
-;; Bazel use stalark language which has the same syntax as python
-(add-to-list 'auto-mode-alist '("\\.bzl\\'" . python-mode))
-
-; (add-to-list 'auto-mode-alist '("\\.ts\\'" . web-mode))
 
 (defun run-projectile-invalidate-cache (&rest _args)
   ;; We ignore the args to `magit-checkout'.
