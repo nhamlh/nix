@@ -10,7 +10,7 @@ in {
       # Fix hidden cursor after typing and need to move the cursor out of Alacritty windows for it to be visible again.
       home.pointerCursor = {
         name = "Adwaita";
-        package = pkgs.gnome.adwaita-icon-theme;
+        package = pkgs.adwaita-icon-theme;
         size = 24;
         x11 = {
           enable = true;
@@ -19,7 +19,8 @@ in {
       };
 
       xdg.configFile."alacritty/alacritty.toml".source = ./alacritty.toml;
-      xdg.configFile."alacritty/solarized_light.toml".source = ./solarized_light.toml;
+      xdg.configFile."alacritty/solarized_light.toml".source =
+        ./solarized_light.toml;
     };
   };
 }
