@@ -9,7 +9,7 @@
   networking.hostName = "tria";
   networking.networkmanager.enable = true;
 
-  Time.timeZone = "Asia/Ho_Chi_Minh";
+  time.timeZone = "Asia/Ho_Chi_Minh";
 
   my.modules = {
     containers.k3s = {
