@@ -9,7 +9,6 @@ in {
 
   # https://nixos.wiki/wiki/PipeWire
   config = mkIf cfg.enable {
-    sound.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
