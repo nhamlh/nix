@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
-    ./hardware.nix
-  ];
+  imports = [ ./hardware.nix ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
