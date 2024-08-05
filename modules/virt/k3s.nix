@@ -30,8 +30,7 @@ in {
       services.k3s = {
         role = "server";
         tokenFile = tokenFile;
-        extraFlags =
-          "--disable traefik --flannel-backend=wireguard-native --flannel-iface=tailscale0";
+        extraFlags = "--disable traefik --flannel-backend=wireguard-native";
       };
     })
 
@@ -40,7 +39,7 @@ in {
         role = "agent";
         serverAddr = cfg.masterAddr;
         tokenFile = tokenFile;
-        extraFlags = "--flannel-iface=tailscale0 ";
+        extraFlags = "";
       };
     })
   ]);
