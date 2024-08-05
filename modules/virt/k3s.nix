@@ -4,6 +4,7 @@ with lib;
 let
   cfg = config.my.modules.containers.k3s;
   tokenFile = "${config.age.secrets.secrets.path}_k3s";
+  tskeyFile = "${config.age.secrets.secrets.path}_tailscale";
 in {
   options.my.modules.containers.k3s = {
     enable = mkEnableOption "k3s";
@@ -30,8 +31,10 @@ in {
       services.k3s = {
         role = "server";
         tokenFile = tokenFile;
-        extraFlags = "--disable traefik --flannel-backend=wireguard-native";
-
+        extraFlags = ''
+          --disable traefik --flannel-backend=wireguard-native --vpn-auth="name=tailscale,joinKey=${
+            lib.removeSuffix "\n" (builtins.readFile tskeyFile)
+          }"'';
       };
     })
 
@@ -40,7 +43,10 @@ in {
         role = "agent";
         serverAddr = cfg.masterAddr;
         tokenFile = tokenFile;
-        extraFlags = "";
+        extraFlags = ''
+          --vpn-auth="name=tailscale,joinKey=${
+            lib.removeSuffix "\n" (builtins.readFile tskeyFile)
+          }"'';
       };
     })
   ]);
