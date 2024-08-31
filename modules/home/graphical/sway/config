@@ -22,7 +22,7 @@ input "type:keyboard" {
     xkb_options ctrl:nocaps
 }
 
-output "*" scale 1.5
+output "*" scale 1
 output "*" background $HOME/.config/wallpapers/stay_focused.jpg fill
 
 # Solarized dark colors
