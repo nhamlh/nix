@@ -24,15 +24,17 @@ in {
         nvtopPackages.full
         dex # generate and execute DesktopEntry files of the type Application
         imv
-        firefox
-        chromium
+        kitty
         tdesktop
         zoom-us
         drawio
         slack
         foliate # ebook reader
-        kitty
-        thunderbird
+
+        # Browsers
+        firefox
+        chromium
+        vivaldi
       ];
     };
   };
