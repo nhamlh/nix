@@ -59,7 +59,7 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 decorations = "full"
 dynamic_padding = false
 opacity = 1.0
-startup_mode = "Fullscreen"
+startup_mode = "Maximized"
 
 [window.dimensions]
 columns = 100
