@@ -40,6 +40,13 @@ family = "FiraCode Nerd Font"
 x = 0
 y = 0
 
+[keyboard]
+bindings = [
+    { action = "Paste", key = "V", mods = "Command" },
+    { action = "Copy", key = "C",mods = "Command" },
+    { action = "Quit", key = "Q",mods = "Command" },
+]
+
 [mouse]
 hide_when_typing = true
 
