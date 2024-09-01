@@ -1,6 +1,6 @@
 configuration {
   show-icons: true;
-  font: "Source Code Pro 25";
+  font: "JetBrainsMono Nerd Font 25";
   columns: 1;
 }
 

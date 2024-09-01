@@ -24,17 +24,17 @@ TERM = "xterm-256color"
 size = 17.0
 
 [font.bold]
-family = "FiraCode Nerd Font"
+family = "JetBrainsMono Nerd Font"
 
 [font.glyph_offset]
 x = 0
 y = 0
 
 [font.italic]
-family = "FiraCode Nerd Font"
+family = "JetBrainsMono Nerd Font"
 
 [font.normal]
-family = "FiraCode Nerd Font"
+family = "JetBrainsMono Nerd Font"
 
 [font.offset]
 x = 0

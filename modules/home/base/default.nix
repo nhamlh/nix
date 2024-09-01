@@ -19,7 +19,9 @@ in {
   config = {
     home-manager.users.nhamlh = {
       home.packages = with pkgs; [
-        (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+        (nerdfonts.override {
+          fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ];
+        })
 
         eza
         fd

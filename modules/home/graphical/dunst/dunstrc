@@ -50,7 +50,7 @@
 
     # Set the font
     # font = "Noto Sans 11"
-    font = "JetBrainsMono 15"
+    font = "JetBrainsMono Nerd Font 15"
 
     # Set line height to font height
     line_height = 0
