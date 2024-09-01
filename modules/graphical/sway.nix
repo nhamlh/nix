@@ -41,7 +41,7 @@ in {
         wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
         bemenu # wayland clone of dmenu
         dracula-theme # gtk theme
-        gnome3.adwaita-icon-theme # default gnome cursors
+        adwaita-icon-theme # default gnome cursors
         xdg-utils # for openning default programms when clicking links
         glib # gsettings
         screenshot
