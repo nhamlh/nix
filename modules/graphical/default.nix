@@ -3,7 +3,16 @@
 with lib;
 let cfg = config.my.modules.graphical;
 in {
-  imports = [ ./sway.nix ./hyprland.nix ];
+  imports = [
+    ./sway.nix
+    ./hyprland.nix
+    ./alacritty
+    ./dunst
+    ./rofi
+    ./mpv.nix
+    ./thunar.nix
+    ./waybar.nix
+  ];
 
   options.my.modules.graphical = {
     enable = mkEnableOption "Graphical module";
@@ -33,6 +42,27 @@ in {
     i18n.inputMethod = {
       enabled = "fcitx5";
       fcitx5.addons = with pkgs; [ fcitx5-unikey ];
+    };
+
+    home-manager.users.nhamlh = {
+      xdg.configFile.wallpapers.source = ../../wallpapers;
+
+      home.packages = with pkgs; [
+        nvtopPackages.full
+        dex # generate and execute DesktopEntry files of the type Application
+        imv
+        kitty
+        tdesktop
+        zoom-us
+        drawio
+        slack
+        foliate # ebook reader
+
+        # Browsers
+        firefox
+        chromium
+        vivaldi
+      ];
     };
   };
 }

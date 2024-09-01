@@ -8,7 +8,7 @@ let
   secrets = config.age.secrets.secrets.path;
 
 in {
-  imports = [ hm { } ./base ./graphical ];
+  imports = [ hm { } ./base ];
 
   config = {
     users.users.nhamlh = {
