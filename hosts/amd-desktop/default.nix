@@ -20,7 +20,7 @@
 
     graphical = {
       enable = true;
-      wm = "hyprland";
+      wm = "sway";
     };
     gaming = { steam.enable = true; };
   };
