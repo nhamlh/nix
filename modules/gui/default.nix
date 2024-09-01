@@ -1,7 +1,7 @@
 { options, config, lib, pkgs, ... }:
 
 with lib;
-let cfg = config.my.modules.graphical;
+let cfg = config.my.modules.gui;
 in {
   imports = [
     ./sway.nix
@@ -14,8 +14,8 @@ in {
     ./waybar.nix
   ];
 
-  options.my.modules.graphical = {
-    enable = mkEnableOption "Graphical module";
+  options.my.modules.gui = {
+    enable = mkEnableOption "Graphical User Interface";
     wm = lib.mkOption {
       description = "Window manager to be used";
       default = "sway";

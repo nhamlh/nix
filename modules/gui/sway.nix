@@ -2,7 +2,7 @@
 
 with lib;
 let
-  cfg = config.my.modules.graphical;
+  cfg = config.my.modules.gui;
   screenshot = pkgs.writeTextFile {
     name = "screenshot";
     destination = "/bin/screenshot";

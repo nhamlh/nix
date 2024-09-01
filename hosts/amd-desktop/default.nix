@@ -18,7 +18,7 @@
 
     containers.enable = true;
 
-    graphical = {
+    gui = {
       enable = true;
       wm = "sway";
     };

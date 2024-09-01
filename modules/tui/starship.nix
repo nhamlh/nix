@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-let cfg = config.my.modules.graphical;
+let cfg = config.my.modules.gui;
 in {
   config = {
     home-manager.users.nhamlh = {
