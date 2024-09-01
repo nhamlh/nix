@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 let
-
   gdk = pkgs.google-cloud-sdk.withExtraComponents
     (with pkgs.google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]);
 in {
@@ -17,27 +16,30 @@ in {
   ];
 
   config = {
-    home-manager.users.nhamlh = {
-      home.packages = with pkgs; [
-        (nerdfonts.override {
-          fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ];
-        })
+    environment.systemPackages = with pkgs; [
+      eza
+      fd
+      kubectl
+      k9s
+      yq
+      ripgrep
+      diff-so-fancy
+      bottom # htop/zenith replacement
+      usbutils
+      xclip
+      awscli
+      aws-mfa
+      gdk
+      sqlite
+    ];
 
-        eza
-        fd
-        kubectl
-        k9s
-        yq
-        ripgrep
-        diff-so-fancy
-        bottom # htop/zenith replacement
-        usbutils
-        xclip
-        awscli
-        aws-mfa
-        gdk
-        sqlite
-      ];
+    home-manager.users.nhamlh = {
+      home.packages = with pkgs;
+        [
+          (nerdfonts.override {
+            fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ];
+          })
+        ];
 
       programs.dircolors = {
         enable = true;
