@@ -8,7 +8,6 @@ in {
     ./alacritty
     ./dunst
     ./hyprland
-    ./i3
     ./rofi
     ./sway
     ./mpv.nix
