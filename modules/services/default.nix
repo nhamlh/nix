@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./grafana-agent.nix ./adguard.nix ];
+  imports = [ ./grafana-agent.nix ./adguard.nix ./cloudflare-warp.nix ];
 }
