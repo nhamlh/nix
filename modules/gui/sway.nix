@@ -29,11 +29,11 @@ let
   };
 in {
   config = mkIf (cfg.enable && cfg.wm == "sway") {
-    environment.systemPackages = with pkgs; [ wayland ];
+    # environment.systemPackages = with pkgs; [ wayland ];
 
     home-manager.users.nhamlh = {
       home.packages = with pkgs; [
-        sway
+        # sway
         swaylock
         swayidle
         grim # screenshot functionality
