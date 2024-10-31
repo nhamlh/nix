@@ -5,6 +5,8 @@ let
   secrets = config.age.secrets.secrets.path;
   user = "nhamlh";
 in with lib; {
+  imports = [ hm { } ];
+
   config = {
     users = {
       # Ref: https://nixos.org/manual/nixos/stable/options.html#opt-users.mutableUsers
