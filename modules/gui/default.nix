@@ -50,6 +50,8 @@ in {
       fcitx5.addons = with pkgs; [ fcitx5-unikey ];
     };
 
+    environment.systemPackages = with pkgs; [ telegram-desktop ];
+
     home-manager.users.nhamlh = {
       xdg.configFile.wallpapers.source = ../../wallpapers;
 
@@ -69,9 +71,6 @@ in {
         chromium
         vivaldi
       ];
-
-      environment.systemPackages = with pkgs; [ telegram-desktop ];
-
     };
   };
 }
