@@ -31,6 +31,13 @@ in {
   config = mkIf (cfg.enable && cfg.wm == "sway") {
     # environment.systemPackages = with pkgs; [ wayland ];
 
+    services.gnome.gnome-keyring.enable = true;
+
+    programs.sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+    };
+
     home-manager.users.nhamlh = {
       home.packages = with pkgs; [
         # sway
@@ -50,11 +57,5 @@ in {
 
       xdg.configFile."sway/config".source = ./sway;
     };
-
-    programs.sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-    };
-
   };
 }
