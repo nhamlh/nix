@@ -30,11 +30,16 @@ in {
 
     xdg = {
       autostart.enable = true;
-      xdgOpenUsePortal = true;
-      # portal = {
-      #   enable = true;
-      #   wlr.enable = true;
-      # };
+      portal = {
+        enable = true;
+        wlr.enable = true;
+      };
+      config = {
+        sway = {
+          default = [ "wlr" "gtk" ];
+          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+        };
+      };
     };
 
     # Select internationalisation properties.
