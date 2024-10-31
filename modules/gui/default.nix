@@ -34,12 +34,6 @@ in {
         enable = true;
         wlr.enable = true;
       };
-      config = {
-        sway = {
-          default = [ "wlr" "gtk" ];
-          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-        };
-      };
     };
 
     # Select internationalisation properties.
