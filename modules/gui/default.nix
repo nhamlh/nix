@@ -28,13 +28,14 @@ in {
 
     services.dbus.enable = true;
 
-    # xdg = {
-    # autostart.enable = true;
-    # portal = {
-    #   enable = true;
-    #   wlr.enable = true;
-    # };
-    # };
+    xdg = {
+      autostart.enable = true;
+      xdgOpenUsePortal = true;
+      # portal = {
+      #   enable = true;
+      #   wlr.enable = true;
+      # };
+    };
 
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
