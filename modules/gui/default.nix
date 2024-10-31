@@ -58,7 +58,7 @@ in {
         dex # generate and execute DesktopEntry files of the type Application
         imv
         kitty
-        tdesktop
+        # tdesktop
         zoom-us
         drawio
         slack
@@ -69,6 +69,9 @@ in {
         chromium
         vivaldi
       ];
+
+      environment.systemPackages = with pkgs; [ telegram-desktop ];
+
     };
   };
 }
