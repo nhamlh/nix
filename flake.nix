@@ -4,8 +4,8 @@
   inputs = {
     # Core dependencies.
     nixpkgs.url = "nixpkgs/nixos-unstable"; # primary nixpkgs
-    nixpkgs-unstable.url =
-      "nixpkgs/nixpkgs-unstable"; # for packages on the edge
+    # nixpkgs-unstable.url =
+    #   "nixpkgs/nixpkgs-unstable"; # for packages on the edge
     home-manager.url = "github:rycee/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -32,7 +32,7 @@
     in {
       nixosConfigurations = pkgs.lib.genAttrs hosts (h:
         nixpkgs.lib.nixosSystem {
-          inherit system;
+          inherit system pkgs;
 
           specialArgs = inputs;
           modules = [ ./modules (./. + "/hosts/${h}") ];
