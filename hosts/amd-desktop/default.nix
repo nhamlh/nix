@@ -23,6 +23,7 @@
       wm = "sway";
     };
     gaming = { steam.enable = true; };
+    devbox.enable = true;
   };
 
   # ZFS support.
