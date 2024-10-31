@@ -1,14 +1,17 @@
-{ system ? builtins.currentSystem, pkgs ? import <nixpkgs> { inherit system; }
+{
+  system ? builtins.currentSystem,
+  pkgs ? import <nixpkgs> { inherit system; },
 }:
 
 with pkgs;
 let
   nixBin = writeShellScriptBin "nix" ''
-    ${nixFlakes}/bin/nix --option experimental-features "nix-command flakes" "$@"
+    ${nixVersions.stable}/bin/nix --option experimental-features "nix-command flakes" "$@"
   '';
-in mkShell {
+in
+mkShell {
   inherit system;
-  buildInputs = [ nixfmt ];
+  buildInputs = [ nixfmt-classic ];
   shellHook = ''
     export FLAKE="$(pwd)"
     export PATH="$FLAKE/bin:${nixBin}/bin:$PATH"
