@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, ... }:
 with builtins;
 with lib;
 let cfg = config.my.modules.gui;
