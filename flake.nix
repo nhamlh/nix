@@ -4,8 +4,8 @@
   inputs = {
     # Core dependencies.
     nixpkgs.url = "nixpkgs/nixos-24.11";
-    # nixpkgs-unstable.url =
-    #   "nixpkgs/nixpkgs-unstable"; # for packages on the edge
+    nixpkgs-unstable.url =
+      "nixpkgs/nixpkgs-unstable"; # for packages on the edge
     home-manager.url = "github:rycee/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -17,11 +17,16 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, ... }:
     let
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+
+      pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config = { allowUnfree = true; };
       };
@@ -34,7 +39,7 @@
         nixpkgs.lib.nixosSystem {
           inherit system pkgs;
 
-          specialArgs = inputs;
+          specialArgs = inputs // { pkgs-unstable = pkgs-unstable; };
           modules = [ ./modules (./. + "/hosts/${h}") ];
         });
 
