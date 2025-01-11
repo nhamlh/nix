@@ -14,7 +14,10 @@
       bluetooth.enable = true;
     };
 
-    services = { grafana-agent.enable = true; };
+    services = {
+      grafana-agent.enable = false;
+      cloudflare-warp.enable = true;
+    };
 
     containers.enable = true;
 
