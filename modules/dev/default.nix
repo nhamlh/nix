@@ -1,7 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-unstable, ... }:
 
 with lib;
 let cfg = config.my.modules.devbox;
+
 in {
 
   imports = [ ];
@@ -10,6 +11,7 @@ in {
     enable = mkEnableOption "My development environment";
   };
 
-  config =
-    mkIf cfg.enable { environment.systemPackages = with pkgs; [ aider-chat ]; };
+  config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs-unstable; [ aider-chat ];
+  };
 }
