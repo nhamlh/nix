@@ -6,6 +6,7 @@ in {
   imports = [
     ./sway.nix
     ./hyprland.nix
+    ./ghostty
     ./alacritty
     ./dunst
     ./rofi
@@ -53,10 +54,8 @@ in {
         nvtopPackages.full
         dex # generate and execute DesktopEntry files of the type Application
         imv
-        kitty
         # tdesktop
         zoom-us
-        drawio
         slack
         foliate # ebook reader
 

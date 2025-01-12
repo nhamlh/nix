@@ -1,0 +1,14 @@
+font-family = JetBrainsMono Nerd Font
+font-style = Regular
+font-size = 17
+
+theme = Builtin Solarized Light
+
+cursor-style = block
+cursor-style-blink = false
+
+shell-integration = zsh
+
+confirm-close-surface = false
+clipboard-paste-protection = false
+unfocused-split-opacity = 1.0
