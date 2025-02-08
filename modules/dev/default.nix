@@ -12,6 +12,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs-unstable; [ aider-chat ];
+    environment.systemPackages = with pkgs-unstable; [
+      aider-chat
+      aichat
+      vscode
+    ];
   };
 }
