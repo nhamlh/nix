@@ -17,7 +17,7 @@ with lib; {
       tmux
       neovim
       unzip
-      dig
+      doggo
       pwgen
       lm_sensors
       tree

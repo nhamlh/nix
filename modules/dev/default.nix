@@ -16,6 +16,7 @@ in {
       aider-chat
       aichat
       vscode
+      code-cursor
     ];
   };
 }

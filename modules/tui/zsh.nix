@@ -66,7 +66,7 @@ in {
           cat = "bat";
           du = "du -h";
           df = "df -h";
-          dig = "dig +short";
+          d = "doggo";
           tf = "terraform";
           tg = "terragrunt";
           ktx = "kubectx";

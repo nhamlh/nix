@@ -1,16 +1,11 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, pkgs-unstable, ... }:
 
 let
-  gdk = pkgs.google-cloud-sdk.withExtraComponents (
-    with pkgs.google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
-  );
-in
-{
+  gdk = with pkgs-unstable;
+    google-cloud-sdk.withExtraComponents
+    (with pkgs-unstable.google-cloud-sdk.components;
+      [ gke-gcloud-auth-plugin ]);
+in {
   imports = [
     ./lang.nix
     ./git.nix
@@ -41,15 +36,12 @@ in
     ];
 
     home-manager.users.nhamlh = {
-      home.packages = with pkgs; [
-        (nerdfonts.override {
-          fonts = [
-            "FiraCode"
-            "DroidSansMono"
-            "JetBrainsMono"
-          ];
-        })
-      ];
+      home.packages = with pkgs;
+        [
+          (nerdfonts.override {
+            fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ];
+          })
+        ];
 
       programs.dircolors = {
         enable = true;
@@ -58,9 +50,7 @@ in
 
       programs.bat = {
         enable = true;
-        config = {
-          theme = "Solarized (light)";
-        };
+        config = { theme = "Solarized (light)"; };
       };
 
     };

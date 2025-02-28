@@ -33,7 +33,7 @@
       #TODO: setup doomemacs properly according to https://github.com/doomemacs/doomemacs/blob/master/docs/getting_started.org#doom-emacs
       programs.emacs = {
         enable = true;
-        package = pkgs.emacs29;
+        package = pkgs.emacs30;
         extraPackages = epkgs: [ epkgs.vterm ];
       };
 
