@@ -3,26 +3,23 @@
 with lib; {
   config = {
     environment.systemPackages = with pkgs; [
-      nfs-utils
-      gnumake
-      cmake
-      glibc
-      gcc
-      openssl
-      zsh
+      xclip
       bash
-      git
+      cmake
       curl
-      wget
-      tmux
-      neovim
-      unzip
-      doggo
-      pwgen
-      lm_sensors
-      tree
       file
+      gcc
+      glibc
+      gnumake
+      lm_sensors
+      nfs-utils
+      openssl
+      pwgen
+      tree
       unzip
+      usbutils
+      wget
+      zsh
     ];
   };
 }

@@ -1,10 +1,6 @@
 { config, lib, pkgs, pkgs-unstable, ... }:
 
 let
-  gdk = with pkgs-unstable;
-    google-cloud-sdk.withExtraComponents
-    (with pkgs-unstable.google-cloud-sdk.components;
-      [ gke-gcloud-auth-plugin ]);
 in {
   imports = [
     ./emacs
@@ -18,30 +14,20 @@ in {
   ];
 
   config = {
-    environment.systemPackages = with pkgs; [
-      eza
-      fd
-      kubectl
-      k9s
-      yq
-      ripgrep
-      diff-so-fancy
-      bottom # htop/zenith replacement
-      usbutils
-      xclip
-      awscli
-      aws-mfa
-      gdk
-      sqlite
-    ];
-
     home-manager.users.nhamlh = {
-      home.packages = with pkgs;
-        [
-          (nerdfonts.override {
-            fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ];
-          })
-        ];
+      home.packages = with pkgs; [
+        (nerdfonts.override {
+          fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ];
+        })
+
+        bottom # htop/zenith replacement
+        doggo
+        eza
+        fd
+        neovim
+        ripgrep
+        tmux
+      ];
 
       programs.dircolors = {
         enable = true;
