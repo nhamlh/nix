@@ -18,6 +18,7 @@
           ".devenv"
           "notes.org" # projectile can add `!notes.org` to .projectile at repo root dir to be able to search for it with projectile-find-file
           ".projectile"
+          ".aider.*"
         ];
 
         delta = {
