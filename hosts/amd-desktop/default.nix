@@ -16,7 +16,7 @@
 
     services = {
       grafana-agent.enable = false;
-      cloudflare-warp.enable = true;
+      cloudflare-warp.enable = false;
     };
 
     containers.enable = true;
