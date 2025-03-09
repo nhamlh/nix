@@ -7,13 +7,13 @@ let
       [ gke-gcloud-auth-plugin ]);
 in {
   imports = [
-    ./lang.nix
-    ./git.nix
-    ./zsh.nix
-    ./fzf.nix
-    ./tmux.nix
+    ./emacs
+    ./tmux
+    ./zsh
     ./direnv.nix
-    ./emacs.nix
+    ./fzf.nix
+    ./git.nix
+    ./lang.nix
     ./starship.nix
   ];
 

@@ -4,7 +4,7 @@ let profiling = false;
 in {
   config = {
     home-manager.users.nhamlh = {
-      home.file.".zsh.d".source = ./zsh/zsh.d;
+      home.file.".zsh.d".source = ./zsh.d;
 
       programs.zsh = {
         enable = true;

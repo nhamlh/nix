@@ -4,8 +4,8 @@ with lib;
 let cfg = config.my.modules.gui;
 in {
   imports = [
-    ./sway.nix
-    ./hyprland.nix
+    ./sway
+    ./hyprland
     ./ghostty
     ./alacritty
     ./dunst
