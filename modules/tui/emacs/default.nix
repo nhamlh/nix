@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   config = {
@@ -37,8 +42,7 @@
         extraPackages = epkgs: [ epkgs.vterm ];
       };
 
-      #TODO: Set DOOMDIR to "xdg.configFile.doom"
-      home.file.".doom.d".source = ./doom;
+      xdg.configFile."doom".source = ./doom;
     };
   };
 }
