@@ -12,11 +12,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs-unstable; [
-      aider-chat
-      aichat
-      vscode
-      code-cursor
-    ];
+    home-manager.users.nhamlh = {
+      home.packages = with pkgs-unstable; [
+        aider-chat
+        aichat
+        vscode
+        code-cursor
+      ];
+    };
+
   };
 }
