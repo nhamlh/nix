@@ -20,7 +20,13 @@
           ".projectile"
         ];
 
-        diff-so-fancy = { enable = true; };
+        delta = {
+          enable = true;
+          options = {
+            light = true;
+            side-by-side = true;
+          };
+        };
 
         extraConfig = {
           init.defaultBranch = "main"; # based.
