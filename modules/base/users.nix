@@ -1,11 +1,10 @@
 { config, lib, pkgs, home-manager, ... }:
 
 let
-  hm = home-manager.nixosModules.home-manager;
   secrets = config.age.secrets.secrets.path;
   user = "nhamlh";
 in with lib; {
-  imports = [ hm { } ];
+  imports = [ ];
 
   config = {
     users = {

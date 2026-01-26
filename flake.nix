@@ -4,16 +4,19 @@
   inputs = {
     # Core dependencies.
     nixpkgs.url = "nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url =
-      "nixpkgs/nixpkgs-unstable"; # for packages on the edge
+    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable"; # for packages on the edge
+    
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
-      # The `follows` keyword in inputs is used for inheritance.
-      # Here, `inputs.nixpkgs` of home-manager is kept consistent with
-      # the `inputs.nixpkgs` of the current flake,
-      # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Flake parts for modern structure
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    # Formatter
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     # Secrets manager
     agenix.url = "github:ryantm/agenix";
@@ -23,32 +26,68 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, ... }:
-    let
-      system = "x86_64-linux";
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, flake-parts, treefmt-nix, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+      
+      imports = [
+        treefmt-nix.flakeModule
+      ];
+      
+      perSystem = { config, self', inputs', pkgs, system, ... }: {
+        # Treefmt configuration
+        treefmt = {
+          projectRootFile = "flake.nix";
+          programs.nixfmt.enable = true; # Use nixfmt-classic or nixfmt-rfc-style
+        };
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config = { allowUnfree = true; };
+        # Devshell configuration
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [
+            nixfmt-classic
+            git
+            # home-manager is often useful in devshell too
+            home-manager.packages.${system}.home-manager
+          ];
+
+          shellHook = ''
+            export FLAKE="$(pwd)"
+          '';
+        };
       };
 
-      pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
-        config = { allowUnfree = true; };
+      flake = {
+        nixosConfigurations = let
+          # Helper to read hosts directory
+          readHosts = folder:
+            nixpkgs.lib.mapAttrsToList (n: v: n)
+              (nixpkgs.lib.filterAttrs (n: v: v == "directory") (builtins.readDir folder));
+
+          hosts = readHosts ./hosts;
+          
+          # Function to generate a NixOS system
+          mkHost = hostName:
+            let
+              system = "x86_64-linux"; # Hardcoded as per original, could be dynamic later
+              pkgs-unstable = import nixpkgs-unstable {
+                inherit system;
+                config = { allowUnfree = true; };
+              };
+            in
+            nixpkgs.lib.nixosSystem {
+              inherit system;
+              specialArgs = inputs // { inherit pkgs-unstable; };
+              modules = [
+                inputs.home-manager.nixosModules.home-manager
+                ./modules
+                (./. + "/hosts/${hostName}")
+                {
+                   nixpkgs.config.allowUnfree = true;
+                }
+              ];
+            };
+        in
+          nixpkgs.lib.genAttrs hosts mkHost;
       };
-
-      hosts = pkgs.lib.mapAttrsToList (n: v: n)
-        (pkgs.lib.filterAttrs (n: v: v == "directory")
-          (builtins.readDir ./hosts));
-    in {
-      nixosConfigurations = pkgs.lib.genAttrs hosts (h:
-        nixpkgs.lib.nixosSystem {
-          inherit system pkgs;
-
-          specialArgs = inputs // { pkgs-unstable = pkgs-unstable; };
-          modules = [ ./modules (./. + "/hosts/${h}") ];
-        });
-
-      devShells = import ./shell.nix { inherit system pkgs; };
     };
 }
