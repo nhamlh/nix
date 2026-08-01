@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+#
+# screenshot-area - Screenshot with region selection
+#
+# Usage: screenshot-area
+#
+# Uses grim + slurp for interactive region selection. Saves the
+# screenshot to ~/Screenshots/ with a timestamp filename, copies it
+# to the clipboard via wl-copy, and shows a notification.
+#
+# Based on max-baz-dotfiles/overlay/bin/screenshot-area
+
+set -euo pipefail
+
+screenshot_dir="${HOME}/Screenshots"
+mkdir -p "${screenshot_dir}"
+
+timestamp="$(date '+%Y-%m-%d-%H%M%S')"
+filename="${screenshot_dir}/${timestamp}.png"
+
+# Select region with slurp
+if geometry="$(slurp -d 2>/dev/null)"; then
+    grim -g "${geometry}" "${filename}"
+else
+    # User cancelled selection; take fullscreen instead
+    grim "${filename}"
+fi
+
+# Copy to clipboard
+if command -v wl-copy &>/dev/null; then
+    wl-copy < "${filename}"
+fi
+
+# Show notification
+if command -v notify-send &>/dev/null; then
+    notify-send -t 3000 "Screenshot saved" "${filename}"
+fi
+
+echo "${filename}"

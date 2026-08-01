@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+#
+# wl-clipboard-manager - Clipboard manager with history
+#
+# Usage: wl-clipboard-manager [pick|clear|lock|unlock]
+#
+# Manages clipboard history using clipman. Integrates with rofi or
+# bemenu for picking from history. Supports locking/unlocking the
+# clipboard to prevent certain content from being recorded.
+#
+# Subcommands:
+#   pick   - Show clipboard history via rofi (or bemenu as fallback)
+#   clear  - Clear clipboard history
+#   lock   - Temporarily disable clipboard tracking
+#   unlock - Re-enable clipboard tracking
+#
+# Based on max-baz-dotfiles/overlay/bin/wl-clipboard-manager
+
+set -euo pipefail
+
+app="$(basename "$0")"
+lockfile="${XDG_RUNTIME_DIR:-/tmp}/${app}.lock"
+
+case "${1:-}" in
+    pick)
+        if command -v rofi &>/dev/null; then
+            exec clipman pick --tool rofi
+        elif command -v bemenu &>/dev/null; then
+            exec clipman pick --tool bemenu
+        else
+            echo >&2 "${app}: no picker tool found (install rofi or bemenu)"
+            exit 1
+        fi
+        ;;
+    clear)
+        exec clipman clear
+        ;;
+    lock)
+        touch "${lockfile}"
+        if command -v notify-send &>/dev/null; then
+            notify-send -t 1500 'Clipboard' 'Tracking locked'
+        fi
+        ;;
+    unlock)
+        rm -f "${lockfile}"
+        if command -v notify-send &>/dev/null; then
+            notify-send -t 1500 'Clipboard' 'Tracking unlocked'
+        fi
+        ;;
+    *)
+        echo >&2 "Usage: ${app} {pick|clear|lock|unlock}"
+        exit 1
+        ;;
+esac

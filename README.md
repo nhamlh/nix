@@ -44,3 +44,11 @@ NIXPKGS_ALLOW_UNFREE=1 nixos-install --root /mnt --impure --flake ${NIX_REPO_PAT
 
 # Host naming
 servers fleet are named of greek numbers. For example from one to ten: ena, thio, tria, tessera, pendi, exi, efta, ochto, ennea, theka.
+
+# References
+- https://serokell.io/blog/practical-nix-flakes
+- https://shen.hong.io/nixos-home-manager-wayland-sway/
+- https://nixos.wiki/wiki/Storage_optimization
+- https://nix.dev/manual/nix/2.24/package-management/garbage-collector-roots.html
+- https://nixos.org/guides/nix-pills/11-garbage-collector
+- https://nixos-and-flakes.thiscute.world

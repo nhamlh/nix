@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#
+# cgtoggle - Toggle apps (stop if running, launch if not)
+#
+# Usage: cgtoggle <name> <command>
+#
+# Checks if an app is running via its systemd scope name. If running,
+# stops it; otherwise launches it via cglaunch.
+#
+# Based on max-baz-dotfiles/overlay/bin/cgtoggle
+
+set -Eeuo pipefail
+
+name="${1:?Usage: cgtoggle <name> <command>}"
+shift
+
+# Check if a scope matching the name exists and stop it
+if systemctl --user --type=service --type=scope --no-pager --no-legend list-units 2>/dev/null \
+    | awk '{ print $1 }' | grep -q "launch-${name}"; then
+    systemctl --user --type=service --type=scope --no-pager --no-legend list-units 2>/dev/null \
+        | awk '{ print $1 }' | grep "launch-${name}" | xargs -r systemctl --user stop
+else
+    exec cglaunch "$@"
+fi

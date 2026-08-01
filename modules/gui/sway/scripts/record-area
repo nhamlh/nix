@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+#
+# record-area - Screen recording with region selection
+#
+# Usage: record-area
+#
+# Uses wf-recorder + slurp for interactive region selection. Toggles
+# recording: if wf-recorder is already running, stops it; otherwise
+# prompts for a region and starts recording. Saves to ~/Videos/ with
+# a timestamp filename. Shows notifications on start/stop.
+#
+# Based on max-baz-dotfiles/overlay/bin/record-area
+
+set -euo pipefail
+
+# If wf-recorder is already running, stop it
+if pkill -x wf-recorder 2>/dev/null; then
+    if command -v notify-send &>/dev/null; then
+        notify-send -t 2000 'Screen recording' 'Recording stopped'
+    fi
+    exit 0
+fi
+
+video_dir="${HOME}/Videos"
+mkdir -p "${video_dir}"
+
+timestamp="$(date '+%Y-%m-%d-%H%M%S')"
+filename="${video_dir}/record_${timestamp}.mp4"
+
+if command -v notify-send &>/dev/null; then
+    notify-send -t 2000 'Screen recording' 'Select an area to start the recording...'
+fi
+
+# Select region with slurp
+if geometry="$(slurp -d 2>/dev/null)"; then
+    wf-recorder -g "${geometry}" -f "${filename}"
+else
+    # User cancelled selection; record fullscreen
+    wf-recorder -f "${filename}"
+fi
+
+if command -v notify-send &>/dev/null; then
+    notify-send -t 2000 'Screen recording' "Saved to ${filename}"
+fi
+
+echo "${filename}"

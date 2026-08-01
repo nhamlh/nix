@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# cggrep - Check if an app is running via systemd
+#
+# Usage: cggrep <name>
+#
+# Returns 0 if a systemd scope matching "launch-<name>" is active,
+# returns 1 otherwise.
+#
+# Based on max-baz-dotfiles/overlay/bin/cggrep
+
+set -euo pipefail
+
+name="${1:?Usage: cggrep <name>}"
+
+systemctl --plain --no-legend --user list-units 2>/dev/null \
+    | grep -q "^launch-${name}"

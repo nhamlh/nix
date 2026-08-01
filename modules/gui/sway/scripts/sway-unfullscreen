@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+#
+# sway-unfullscreen - Daemon that auto-unfullscreens when a new window opens
+#
+# Usage: sway-unfullscreen
+#
+# Subscribes to sway IPC window events. When a new window opens while
+# another window is fullscreen, it unfullscreens the current window
+# and focuses the new one.
+#
+# Based on max-baz-dotfiles/overlay/bin/sway-unfullscreen
+
+set -euo pipefail
+
+# Check prerequisites
+if ! command -v swaymsg &>/dev/null; then
+    echo >&2 "sway-unfullscreen: swaymsg not found"
+    exit 1
+fi
+
+if ! command -v jq &>/dev/null; then
+    echo >&2 "sway-unfullscreen: jq not found"
+    exit 1
+fi
+
+swaymsg -t subscribe -m '[ "window" ]' | while read -r line; do
+    change="$(echo "${line}" | jq -r '.change')"
+    if [ "${change}" = "new" ]; then
+        # Check if the currently focused container is fullscreen
+        fullscreen_mode="$(swaymsg -t get_tree | jq -r '.. | select(.type?) | select(.focused==true).fullscreen_mode')"
+        if [ "${fullscreen_mode}" -eq 1 ]; then
+            swaymsg fullscreen disable
+            swaymsg '[con_id="'"$(echo "${line}" | jq -r '.container.id')"'"]' focus
+        fi
+    fi
+done

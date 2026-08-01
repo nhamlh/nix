@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+#
+# exit-wm - Session management (lock, logout, suspend, reboot, shutdown, switch to TTY)
+#
+# Usage: exit-wm [lock|logout|suspend|reboot|shutdown|tty]
+#
+# Provides centralized session control for sway/wayland compositors.
+# Uses swaylock for locking, loginctl for session management,
+# and systemctl for power operations.
+#
+# Based on max-baz-dotfiles/overlay/bin/exit-wm
+
+set -euo pipefail
+
+before_lock() {
+    # Pause media players
+    if command -v playerctl &>/dev/null; then
+        playerctl -a pause 2>/dev/null || true
+    fi
+}
+
+case "${1:-}" in
+    tty)
+        systemctl --user stop sway-session.target 2>/dev/null || true
+        if command -v swaymsg &>/dev/null; then
+            swaymsg exit
+        elif command -v hyprctl &>/dev/null; then
+            hyprctl dispatch exit
+        fi
+        ;;
+    lock)
+        before_lock
+        if command -v swaylock &>/dev/null; then
+            exec swaylock
+        else
+            echo >&2 "exit-wm: swaylock not found"
+            exit 1
+        fi
+        ;;
+    logout)
+        # Terminate the user session via loginctl
+        loginctl terminate-session "${XDG_SESSION_ID:-self}"
+        ;;
+    suspend)
+        before_lock
+        systemctl -i suspend
+        # After resume, lock the screen
+        if command -v swaylock &>/dev/null; then
+            swaylock
+        fi
+        ;;
+    reboot)
+        exec systemctl -i reboot
+        ;;
+    shutdown)
+        exec systemctl -i poweroff
+        ;;
+    *)
+        echo >&2 "Usage: $0 {tty|lock|logout|suspend|reboot|shutdown}"
+        exit 2
+        ;;
+esac

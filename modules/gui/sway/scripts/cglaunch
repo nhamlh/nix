@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+#
+# cglaunch - Launch apps as systemd scopes for proper lifecycle management
+#
+# Usage: cglaunch [--term] <command>
+#
+# Launches a command under a systemd --user scope, enabling proper
+# lifecycle tracking via systemd. With --term, runs the command inside
+# a terminal (alacritty or ghostty).
+#
+# Based on max-baz-dotfiles/overlay/bin/cglaunch
+
+set -euo pipefail
+
+app=""
+term_cmd=""
+
+if [ "$1" = "--term" ]; then
+    shift
+
+    # Collect terminal args before the command
+    term_args=()
+    if [[ "$1" == "-"* ]]; then
+        while [[ "$#" -gt 1 ]] && [[ "$1" != "--" ]]; do
+            term_args+=("$1")
+            shift
+        done
+        [[ "$1" != "--" ]] || shift
+    fi
+
+    title="${1##*/}"
+    title="${title:-terminal}"
+
+    # Prefer ghostty, fall back to alacritty
+    if command -v ghostty &>/dev/null; then
+        term_cmd="ghostty"
+    elif command -v alacritty &>/dev/null; then
+        term_cmd="alacritty"
+    else
+        echo >&2 "cglaunch: --term requires ghostty or alacritty"
+        exit 1
+    fi
+
+    app="${term_cmd} ${term_args[*]} --class ${title}"
+else
+    title="${1##*/}"
+    title="${title:-app}"
+fi
+
+if [ "$(uname)" == "Linux" ]; then
+    exec systemd-run --quiet --user --scope --slice app.slice \
+        --unit "launch-${title}-$(date '+%s%N')" -- "$app" "$@"
+else
+    exec $app "$@"
+fi

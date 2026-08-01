@@ -8,6 +8,8 @@ in {
     ./hyprland
     ./ghostty
     ./alacritty
+    # dunst is being phased out in favor of swaync when using sway,
+    # but kept for now since it's still needed for hyprland.
     ./dunst
     ./rofi
     ./mpv.nix
@@ -34,6 +36,10 @@ in {
       portal = {
         enable = true;
         wlr.enable = true;
+        extraPortals = with pkgs; [
+          xdg-desktop-portal-wlr
+          xdg-desktop-portal-gtk
+        ];
       };
     };
 
@@ -45,7 +51,20 @@ in {
       fcitx5.addons = with pkgs; [ fcitx5-unikey fcitx5-mozc fcitx5-gtk ];
     };
 
-    environment.systemPackages = with pkgs; [ telegram-desktop ];
+    environment.systemPackages = with pkgs; [ telegram-desktop ]
+      ++ lib.optionals (cfg.wm == "sway") [
+        swaybg
+        swaylock
+        swayr
+        swaynotificationcenter
+        wldash
+        wf-recorder
+        wev
+        swayest-workstyle
+        wluma
+        rofi-wayland
+        clipman
+      ];
 
     home-manager.users.nhamlh = {
       xdg.configFile.wallpapers.source = ../../wallpapers;
