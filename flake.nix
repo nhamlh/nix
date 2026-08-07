@@ -47,7 +47,7 @@
             nixfmt-classic
             git
             # home-manager is often useful in devshell too
-            home-manager.packages.${system}.home-manager
+            inputs'.home-manager.packages.home-manager
           ];
 
           shellHook = ''
