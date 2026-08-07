@@ -20,6 +20,7 @@ with lib; {
       usbutils
       wget
       zsh
+      bun
     ];
   };
 }
