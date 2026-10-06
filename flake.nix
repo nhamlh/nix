@@ -18,6 +18,10 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Remote deployment
+    deploy-rs.url = "github:serokell/deploy-rs";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
+
     # Secrets manager
     agenix.url = "github:ryantm/agenix";
     secrets = {
@@ -47,6 +51,7 @@
             nixfmt
             git
             just
+            inputs'.deploy-rs.packages.deploy-rs
             # home-manager is often useful in devshell too
             inputs'.home-manager.packages.home-manager
           ];
@@ -94,6 +99,16 @@
             };
         in
           nixpkgs.lib.genAttrs hosts mkHost;
+
+        # `deploy .#<host>`; hostname resolves via tailscale MagicDNS.
+        deploy.nodes = nixpkgs.lib.mapAttrs (name: host: {
+          hostname = name;
+          sshUser = "nhamlh";
+          user = "root";
+          interactiveSudo = true; # wheel needs a password
+          profiles.system.path =
+            inputs.deploy-rs.lib.x86_64-linux.activate.nixos host;
+        }) self.nixosConfigurations;
       };
     };
 }

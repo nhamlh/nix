@@ -23,9 +23,9 @@ build h=host:
 diff h=host: (build h)
     nix store diff-closures /run/current-system ./result
 
-# Deploy to a remote host over SSH (e.g. via tailscale)
-deploy h:
-    nixos-rebuild switch --flake .#{{h}} --target-host {{h}} --sudo --ask-sudo-password
+# Deploy to remote host(s) via deploy-rs; auto-rollback if activation breaks SSH
+deploy +hosts:
+    for h in {{hosts}}; do nix run --inputs-from . deploy-rs -- ".#$h" || exit 1; done
 
 # Update all inputs, or one: just update nixpkgs
 update *inputs:
