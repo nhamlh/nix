@@ -3,11 +3,11 @@
 
   inputs = {
     # Core dependencies.
-    nixpkgs.url = "nixpkgs/nixos-24.11";
+    nixpkgs.url = "nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable"; # for packages on the edge
     
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -38,14 +38,15 @@
         # Treefmt configuration
         treefmt = {
           projectRootFile = "flake.nix";
-          programs.nixfmt.enable = true; # Use nixfmt-classic or nixfmt-rfc-style
+          programs.nixfmt.enable = true;
         };
 
         # Devshell configuration
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
-            nixfmt-classic
+            nixfmt
             git
+            just
             # home-manager is often useful in devshell too
             inputs'.home-manager.packages.home-manager
           ];
@@ -54,6 +55,11 @@
             export FLAKE="$(pwd)"
           '';
         };
+
+        # `nix flake check` builds every host.
+        checks = nixpkgs.lib.mapAttrs' (name: host:
+          nixpkgs.lib.nameValuePair "host-${name}" host.config.system.build.toplevel)
+          self.nixosConfigurations;
       };
 
       flake = {

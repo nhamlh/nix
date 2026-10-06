@@ -3,7 +3,7 @@
 - Follow NixOS installation guide to prepare the disk: https://nixos.wiki/wiki/NixOS_Installation_Guide
 - Install bitwarden-cli and retrieve ssh key and add to ssh-agent. It's needed to pull secrets from private repo
 ``` sh
-nix-shell -p nixFlakes git bitwarden-cli jq
+nix-shell -p git bitwarden-cli jq
 
 eval $(ssh-agent &)
 mkdir ~/.ssh
@@ -37,7 +37,7 @@ mv hosts/$HOST/configuration.nix hosts/$HOST/default.nix
 
 - Install nixos
 ``` sh
-NIXPKGS_ALLOW_UNFREE=1 nixos-install --root /mnt --impure --flake ${NIX_REPO_PATH}#$HOST
+nixos-install --root /mnt --flake ${NIX_REPO_PATH}#$HOST
 ```
 
 - Rekey nix-secrets with pubkey of this new host

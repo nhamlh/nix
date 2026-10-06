@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  hosts:
+    runs-on: ubuntu-latest
+    outputs:
+      hosts: ${{ steps.list.outputs.hosts }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: list
+        run: echo "hosts=$(ls hosts | jq -R . | jq -sc .)" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: hosts
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        host: ${{ fromJSON(needs.hosts.outputs.hosts) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jlumbroso/free-disk-space@main
+      # Needs a read-only deploy key for nhamlh/nix-secrets in repo secrets.
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.NIX_SECRETS_DEPLOY_KEY }}
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - run: nix fmt -- --ci
+        if: matrix.host == fromJSON(needs.hosts.outputs.hosts)[0]
+      - env:
+          HOST: ${{ matrix.host }}
+        run: >-
+          nix build --print-build-logs
+          ".#nixosConfigurations.$HOST.config.system.build.toplevel"

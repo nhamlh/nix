@@ -1,0 +1,22 @@
+name: Update flake.lock
+
+on:
+  schedule:
+    - cron: "0 2 * * 1" # Monday 02:00 UTC
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.NIX_SECRETS_DEPLOY_KEY }}
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/update-flake-lock@main
+        with:
+          pr-title: "chore: update flake.lock"

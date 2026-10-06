@@ -36,7 +36,7 @@ let
       ${wrap "screenshot-area" [ pkgs.grim pkgs.slurp pkgs.wl-clipboard pkgs.libnotify ]}
       ${wrap "record-area" [ pkgs.wf-recorder pkgs.slurp pkgs.libnotify ]}
       ${wrap "sway-unfullscreen" [ pkgs.sway pkgs.jq ]}
-      ${wrap "wl-clipboard-manager" [ pkgs.clipman pkgs.rofi-wayland pkgs.bemenu pkgs.libnotify ]}
+      ${wrap "wl-clipboard-manager" [ pkgs.clipman pkgs.rofi pkgs.bemenu pkgs.libnotify ]}
     '';
   };
 

@@ -15,7 +15,6 @@
     };
 
     services = {
-      grafana-agent.enable = false;
       cloudflare-warp.enable = false;
     };
 

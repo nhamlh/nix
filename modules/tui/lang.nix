@@ -16,7 +16,7 @@
       gotests
       gore
 
-      nixfmt-rfc-style
+      nixfmt
       dockfmt
 
       shellcheck

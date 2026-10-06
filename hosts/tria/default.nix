@@ -29,7 +29,7 @@
   boot = {
     supportedFilesystems = [ "zfs" ];
     zfs.forceImportRoot = false;
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    kernelPackages = pkgs.linuxPackages; # LTS, ZFS-compatible
   };
 
   system.stateVersion = "24.05";
