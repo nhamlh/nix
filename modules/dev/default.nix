@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-unstable, ... }:
+{ config, lib, pkgs, pkgs-unstable, vscode-server, ... }:
 
 with lib;
 let
@@ -19,12 +19,7 @@ in {
     home-manager.users.nhamlh = {
 
       # For remote-editing vscode
-      imports = [
-        "${
-          fetchTarball
-          "https://github.com/msteen/nixos-vscode-server/tarball/master"
-        }/modules/vscode-server/home.nix"
-      ];
+      imports = [ vscode-server.homeModules.default ];
       services.vscode-server.enable = true;
 
       home.packages = with pkgs-unstable; [

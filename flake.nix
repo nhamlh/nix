@@ -26,6 +26,10 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    # VS Code remote server fix-up (home-manager module)
+    vscode-server.url = "github:msteen/nixos-vscode-server";
+    vscode-server.inputs.flake-parts.follows = "flake-parts";
+
     # Secrets manager
     agenix.url = "github:ryantm/agenix";
     secrets = {
