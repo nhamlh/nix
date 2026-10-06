@@ -22,6 +22,10 @@
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Declarative disk partitioning (new hosts only, see README)
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
     # Secrets manager
     agenix.url = "github:ryantm/agenix";
     secrets = {
@@ -90,6 +94,7 @@
               specialArgs = inputs // { inherit pkgs-unstable; };
               modules = [
                 inputs.home-manager.nixosModules.home-manager
+                inputs.disko.nixosModules.disko # no-op unless host sets disko.devices
                 ./modules
                 (./. + "/hosts/${hostName}")
                 {
