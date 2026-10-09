@@ -30,6 +30,10 @@
     vscode-server.url = "github:msteen/nixos-vscode-server";
     vscode-server.inputs.flake-parts.follows = "flake-parts";
 
+    # Terminal workspace manager
+    herdr.url = "github:ogulcancelik/herdr";
+    herdr.inputs.nixpkgs.follows = "nixpkgs";
+
     # Secrets manager
     agenix.url = "github:ryantm/agenix";
     secrets = {

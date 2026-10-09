@@ -1,0 +1,119 @@
+onboarding = false
+# herdr configuration — ported from ~/.config/tmux/tmux.conf
+# Concept map: tmux window -> herdr tab, tmux session -> herdr workspace.
+
+[ui]
+# Active pane border uses `accent`. The inactive/muted border color is derived
+# from the theme and is NOT separately configurable in herdr 0.7.2.
+# On a LIGHT theme, the active accent must be DARK + saturated to stand out
+# (bright/light colors like cyan wash out against the cream background).
+pane_borders = true
+pane_gaps = false   # tighter panes: share divider borders instead of a wide gap
+accent = "#d7005f"  # deep rose/crimson — high contrast on a light background
+# Alternatives (all dark + saturated, good on light themes):
+#   accent = "#8700d7"   # violet
+#   accent = "#d70000"   # strong red
+#   accent = "#005fd7"   # deep blue
+
+# From https://github.com/wkentaro/herdr/pull/1
+pane_dim = true
+
+# My fork
+show_tab_index = true
+
+agent_panel_sort = "spaces"
+show_agent_labels_on_pane_borders = true
+[keys]
+# tmux: set -g prefix C-o
+prefix = "ctrl+o"
+
+# --- Reload / copy mode (tmux defaults preserved) ---
+# tmux: prefix R  (source-file / reload)
+reload_config = "prefix+shift+r"
+# tmux: prefix [  (copy-mode -e). vi v/V/C-v selection is built into herdr copy mode.
+copy_mode = "prefix+["
+
+# --- Pane focus ---
+# tmux: M-h/j/k/l select-pane (vim-aware).
+# NOTE: herdr has NO vim-aware passthrough. These direct alt chords will be
+# captured by herdr even when nvim is focused, so nvim's own <M-hjkl> won't fire.
+# If you rely on vim-tmux-navigator-style seamless nav, comment these four out
+# and use the prefix defaults instead (see the safe alternative at the bottom).
+focus_pane_left = "alt+h"
+focus_pane_down = "alt+j"
+focus_pane_up = "alt+k"
+focus_pane_right = "alt+l"
+
+# --- Splits ---
+# tmux: bind v split-window -h  (side-by-side)  -> vertical divider
+split_vertical = "prefix+v"
+# tmux: bind h split-window -v  (stacked)       -> horizontal divider
+split_horizontal = "prefix+h"
+
+# tmux: bind z resize-pane -Z
+zoom = "prefix+z"
+
+# --- Tab (window) navigation ---
+# tmux: M-H previous-window / S-Left ; M-L next-window / S-Right
+previous_tab = ["alt+shift+h", "shift+left"]
+next_tab = ["alt+shift+l", "shift+right"]
+# Jump directly to tab N (alt+1 … alt+9)
+switch_tab = "alt+1..9"
+# Jump directly to workspace N (alt+shift+1 … alt+shift+9)
+switch_workspace = "alt+shift+1..9"
+
+# --- Kill / rename ---
+# tmux: bind k kill-pane
+close_pane = "prefix+k"
+# tmux: bind K kill-window
+close_tab = "prefix+shift+k"
+# tmux: bind t select-pane -T (rename)
+rename_pane = "prefix+t"
+rename_tab = "prefix+comma"
+
+# --- Resize ---
+# tmux used repeatable prefix+M-hjkl. herdr uses a resize MODE:
+# press prefix+i, then h/j/k/l to resize, esc to exit.
+resize_mode = "prefix+i"
+
+# Gaps with no herdr equivalent (were in your tmux config):
+#   - prefix r  respawn-pane → reset active pane (see [[keys.command]] below)
+#   - prefix T  toggle border     : border display is static config, not a keybind
+#   - per-direction repeatable resize (use resize_mode above instead)
+
+# tmux: bind r  respawn-pane (restart shell in active pane, preserve layout)
+#respawn_pane = "prefix+r"
+
+# tmux-open example (open selection/editor) ported as a custom command.
+# Uncomment and adjust; herdr sets HERDR_ACTIVE_PANE_CWD for you.
+# [[keys.command]]
+# key = "prefix+o"
+# type = "pane"
+# command = "$EDITOR ."
+# description = "open editor in pane cwd"
+
+# ---------------------------------------------------------------------------
+# SAFE ALTERNATIVE for pane focus (preserves nvim's own alt keys):
+# comment out the four focus_pane_* alt chords above and use herdr defaults:
+#   focus_pane_left  = "prefix+h"
+#   focus_pane_down  = "prefix+j"
+#   focus_pane_up    = "prefix+k"
+#   focus_pane_right = "prefix+l"
+# ---------------------------------------------------------------------------
+
+[theme]
+name = "solarized-light"
+auto_switch = false
+
+# Override individual color tokens on top of the base theme.
+# Accepts: hex (#rrggbb), named colors, rgb(r,g,b), or "reset".
+# surface_dim is the tone applied to non-focused/zoomed-away surfaces.
+# On this light theme a darker, grayer value makes the dim clearly visible.
+[theme.custom]
+surface_dim = "#b8ae94" # subtler: "#d8cfb8"  ·  stronger: "#9c9070"
+
+[experimental]
+pane_history = true
+
+[ui.toast]
+delivery = "terminal"

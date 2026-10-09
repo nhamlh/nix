@@ -4,6 +4,7 @@ let
 in {
   imports = [
     ./emacs
+    ./herdr
     ./tmux
     ./zsh
     ./direnv.nix
