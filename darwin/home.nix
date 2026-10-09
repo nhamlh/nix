@@ -15,6 +15,10 @@
     mpv tmux
   ];
 
+  # Apps installed via brew; only config is managed here.
+  xdg.configFile."ghostty/config".source = ../modules/gui/ghostty/config;
+  xdg.configFile."sofka/config.toml".source = ./sofka.toml;
+
   programs.zsh = {
     enable = true;
     defaultKeymap = "emacs";

@@ -1,0 +1,19 @@
+[keys.command]
+down = ["tab", "down", "ctrl-n"]
+up = ["backtab", "up", "ctrl-p"]
+
+[keys.contexts]
+down = ["down", "j", "ctrl-n"]
+up = ["up", "k", "ctrl-p"]
+
+[keys.context_filter]
+down = ["down", "ctrl-n"]
+up = ["up", "ctrl-p"]
+
+[keys.port_forward_picker]
+down = ["j", "down", "ctrl-n"]
+up = ["k", "up", "ctrl-p"]
+
+[keys.detail]
+page_up = ["pageup", "ctrl-b", "ctrl-u"]
+page_down = ["pagedown", "space", "ctrl-f", "ctrl-d"]
