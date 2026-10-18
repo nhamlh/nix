@@ -34,6 +34,8 @@
     herdr.url = "github:ogulcancelik/herdr";
     herdr.inputs.nixpkgs.follows = "nixpkgs";
 
+    pi.url = "github:earendil-works/pi/stable";
+
     # Secrets manager
     agenix.url = "github:ryantm/agenix";
     secrets = {

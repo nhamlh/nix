@@ -5,6 +5,7 @@ in {
   imports = [
     ./emacs
     ./herdr
+    ./pi.nix
     ./tmux
     ./zsh
     ./direnv.nix
