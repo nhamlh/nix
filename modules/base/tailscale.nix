@@ -34,8 +34,8 @@ in {
       description = "Automatic connection to Tailscale";
 
       # make sure tailscale is running before trying to connect to tailscale
-      after = [ "network-pre.target" "tailscale.service" ];
-      wants = [ "network-pre.target" "tailscale.service" ];
+      after = [ "network-pre.target" "tailscaled.service" ];
+      wants = [ "network-pre.target" "tailscaled.service" ];
       wantedBy = [ "multi-user.target" ];
 
       # set this service as a oneshot job
@@ -48,7 +48,7 @@ in {
 
         # check if we are already authenticated to tailscale
         status="$(${tailscale}/bin/tailscale status -json | ${jq}/bin/jq -r .BackendState)"
-        if [ $status = "Running" ]; then # if so, then do nothing
+        if [ "$status" = "Running" ]; then # if so, then do nothing
           exit 0
         fi
 
