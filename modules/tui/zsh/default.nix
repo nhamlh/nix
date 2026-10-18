@@ -34,7 +34,8 @@ in {
           ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=10";
         };
 
-        initExtraFirst = lib.optionalString profiling "zmodload zsh/zprof" + ''
+        initContent = lib.mkMerge [
+        (lib.mkBefore (lib.optionalString profiling "zmodload zsh/zprof" + ''
           # Load my custom environment variales
           if [[ -f "$HOME/.envs" ]] then
             source $HOME/.envs
@@ -42,9 +43,9 @@ in {
 
           # /etc/zshrc defined this alias which clashes with zpm-zsh/ls plugin
           unalias ls
-        '';
+        ''))
 
-        initExtra = ''
+        (''
           bindkey '\C-h' backward-delete-word
 
           # Edit the current command line in $EDITOR
@@ -59,7 +60,8 @@ in {
           zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
           zstyle ':completion:*' menu select
           setopt interactivecomments
-        '' + lib.optionalString profiling "zprof";
+        '' + lib.optionalString profiling "zprof")
+        ];
 
         shellAliases = {
           vi = "nvim";

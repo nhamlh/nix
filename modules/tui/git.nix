@@ -7,8 +7,8 @@
         enable = true;
 
         #TODO Derive from user info
-        userName = "Nham Le";
-        userEmail = "lehoainham@gmail.com";
+        settings.user.name = "Nham Le";
+        settings.user.email = "lehoainham@gmail.com";
 
         ignores = [
           "*~"
@@ -21,15 +21,7 @@
           ".aider.*"
         ];
 
-        delta = {
-          enable = true;
-          options = {
-            light = true;
-            side-by-side = true;
-          };
-        };
-
-        extraConfig = {
+        settings = {
           init.defaultBranch = "main"; # based.
           core.editor = "nvim";
           credential.helper = "store --file ~/.git-credentials";
@@ -41,6 +33,15 @@
           commit.gpgsign = true;
           gpg.format = "ssh";
           user.signingkey = "~/.ssh/id_ed25519.pub";
+        };
+      };
+
+      programs.delta = {
+        enable = true;
+        enableGitIntegration = true;
+        options = {
+          light = true;
+          side-by-side = true;
         };
       };
     };

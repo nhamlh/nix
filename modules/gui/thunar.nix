@@ -4,7 +4,7 @@ with lib;
 let cfg = config.my.modules.gui;
 in {
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ xfce.thunar ];
+    environment.systemPackages = with pkgs; [ thunar ];
 
     programs.thunar.plugins = with pkgs.xfce; [
       thunar-archive-plugin
