@@ -31,6 +31,9 @@ in {
 
     services.dbus.enable = true;
 
+    # Lightweight TUI display manager; lists sway/hyprland wayland sessions.
+    services.displayManager.ly.enable = true;
+
     xdg = {
       autostart.enable = true;
       portal = {

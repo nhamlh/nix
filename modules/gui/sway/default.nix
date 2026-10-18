@@ -600,11 +600,11 @@ in {
             }
             # swayidle: lock after 300s, dpms off after 600s
             {
-              command = "${pkgs.swayidle}/bin/swayidle -w \
-                timeout 300 '${slock}/bin/slock' \
-                timeout 600 '${lib.getExe' pkgs.sway "swaymsg"} \"output * dpms off\"' \
-                resume '${lib.getExe' pkgs.sway "swaymsg"} \"output * dpms on\"' \
-                before-sleep '${slock}/bin/slock'";
+              command = "${pkgs.swayidle}/bin/swayidle -w"
+                + " timeout 300 '${slock}/bin/slock'"
+                + " timeout 600 '${lib.getExe' pkgs.sway "swaymsg"} \"output * dpms off\"'"
+                + " resume '${lib.getExe' pkgs.sway "swaymsg"} \"output * dpms on\"'"
+                + " before-sleep '${slock}/bin/slock'";
               always = true;
             }
             # swaybg: set wallpaper
